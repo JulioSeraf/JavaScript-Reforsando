@@ -1,0 +1,1 @@
+// Es una nueva forma de definir una fuction anonima
