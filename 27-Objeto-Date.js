@@ -28,8 +28,16 @@ console.log(fecha.toLocaleDateString()); // SOLO LADATA
 console.log(fecha.toLocaleTimeString()); // SOLO LA HORA
  console.clear();
 
- 
+ // Fecha time stamp 1 enero de 1970
+ console.log(Date.now());
 
+ 
+// una libreria potente para manejo de tiempo seria MOMENT.JS
+
+//Pasando nuestra data de nacimento para el console 
+// Primeiro passamos el año, despues el mes , el dia y la hora al final 
+let nacimento = new Date(1997,0,14,2,30,33);
+console.log(nacimento)
 
 
 
