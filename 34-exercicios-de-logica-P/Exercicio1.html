@@ -19,6 +19,9 @@
         #cortar{
             display: none;
         }
+        .repetir{
+            display: none;
+        }
         strong{
             font-size: 2em;
         }
@@ -33,6 +36,7 @@
         <input id="but" type="button" value="Contar" onclick="contador()">
         <input type="button" onclick="separarString()" value="Separar">
         <input type="button" onclick="cortar()" value="Cortar">
+        <input type="button" value="Repita" onclick="repetir()">
         <div id="resCot"></div>
     </form>
     <div id="cortar">
@@ -40,6 +44,11 @@
         <input id="inicio" type="number" placeholder="inicio de corte">
         <input id="fim" type="number" placeholder="fim de corte">
         <input id="but-corte" type="button" value="Enviar">
+    </div>
+    <div class="repetir">
+        <p>Contas vezes deseas repetir el texto?</p>
+        <input id="rep" type="number" max="1000">
+        <input id="but-rep" type="button" value="repetir">
     </div>
     <script src="Exercicio-1-10.js"></script>
 </body>

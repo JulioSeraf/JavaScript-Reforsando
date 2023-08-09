@@ -1,14 +1,7 @@
-/*
-
-4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo. */
-
-
 const text = document.getElementById('text'),
 res = document.getElementById('resCot');
-document.getElementById('limpiar').addEventListener('click',()=>{
-    text.value = '';
-})
-
+const diplayOn = document.getElementById('cortar');
+const diplayRep = document.querySelector('.repetir');
 
 /*1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10. */
 
@@ -33,14 +26,16 @@ function contador(){
 /*2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola". */
 function cortar(){
     res.innerHTML = '';
-    let diplayOn = document.getElementById('cortar');
     let corIni = document.getElementById('inicio'),
     corFim = document.getElementById('fim'),
     butCort = document.getElementById('but-corte');
-    diplayOn.style.display = 'block';
+    if(text.value === ''){
+        res.innerHTML = 'Informe un texto a Recortar'
+    }else{
+        diplayOn.style.display = 'block';
+    }
     butCort.addEventListener('click',()=>{
         diplayOn.style.display = 'none';
-        console.log(corFim.value,corIni.value)
         if(text.value === ''){
             res.innerHTML = 'infome un texto a recortar'
         }else if(corFim.value === ''){
@@ -51,6 +46,7 @@ function cortar(){
     });
 
 };
+
 
 /* 3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].*/
 
@@ -67,3 +63,25 @@ function separarString(){
         });
     };
 };
+/*
+4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo. */
+function repetir(){
+    res.innerHTML = '';
+    let numRep = document.getElementById('rep');
+    if(text.value === ''){
+        res.innerHTML = 'Informe un texto a Repetir'
+    }else{
+        diplayRep.style.display = 'block';
+        document.getElementById('but-rep').addEventListener('click',()=>{
+            diplayRep.style.display = 'none';
+             res.innerHTML = text.value.concat(`<br>`).repeat(numRep.value);
+        });
+    };
+};
+//lipiador
+document.getElementById('limpiar').addEventListener('click',()=>{
+    text.value = '';
+    res.innerHTML = '';
+    diplayOn.style.display = 'none';
+    diplayRep.style.display = 'none';
+});
