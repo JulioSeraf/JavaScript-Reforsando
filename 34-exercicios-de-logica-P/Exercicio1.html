@@ -16,22 +16,31 @@
             height: fit-content;
             margin:20px auto;
         }
+        #cortar{
+            display: none;
+        }
         strong{
             font-size: 2em;
         }
     </style>
 </head>
 <body>
-    <h1>Contador</h1>
-    <p>Informe el texto a contar</p>
+    <h1>Exercicio 1</h1>
+    <p>Informe el texto</p>
     <form>
-        <input type="button" value="Limpiar">
+        <input id="limpiar" type="button" value="Limpiar">
         <input id="text" type="text">
         <input id="but" type="button" value="Contar" onclick="contador()">
         <input type="button" onclick="separarString()" value="Separar">
         <input type="button" onclick="cortar()" value="Cortar">
         <div id="resCot"></div>
     </form>
+    <div id="cortar">
+        <p>informe</p>
+        <input id="inicio" type="number" placeholder="inicio de corte">
+        <input id="fim" type="number" placeholder="fim de corte">
+        <input id="but-corte" type="button" value="Enviar">
+    </div>
     <script src="Exercicio-1-10.js"></script>
 </body>
 </html>
