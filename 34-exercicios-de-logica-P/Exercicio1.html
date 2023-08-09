@@ -13,7 +13,7 @@
         div{
             background-color: lightblue;
             width: 200px;
-            height: 100px;
+            height: fit-content;
             margin:20px auto;
         }
         strong{
@@ -25,8 +25,11 @@
     <h1>Contador</h1>
     <p>Informe el texto a contar</p>
     <form>
+        <input type="button" value="Limpiar">
         <input id="text" type="text">
         <input id="but" type="button" value="Contar" onclick="contador()">
+        <input type="button" onclick="separarString()" value="Separar">
+        <input type="button" onclick="cortar()" value="Cortar">
         <div id="resCot"></div>
     </form>
     <script src="Exercicio-1-10.js"></script>
