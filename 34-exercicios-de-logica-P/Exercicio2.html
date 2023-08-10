@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        input{
+            margin: 10px 0;
+        }
+        #text{
+            display: block;
+            margin: auto;
+        }
+        div{
+            width: 200px;
+            height: fit-content;
+            background-color: lightcyan;
+            margin:20px auto;
+        }
+        .palabra,.renplace{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercicio 2</h1>
+    <p>Informe el texto</p>
+    <form >
+        <input type="button" id="limpiar" value="Limpiar">
+        <input type="text" id="text" placeholder="Texto:">
+        <input type="button" id="revez" value="Revertir">
+        <input type="button" id="busPa" value="Buscar Palabra">
+        <input type="button" id="pali" value="Palíndromo">
+        <input type="button" id="cambiar" value="Cambiar">
+    </form>
+    <div class="palabra">
+        <p>Informe a Palabra a buscar</p>
+        <input type="text" id="palaBusca">
+        <input type="button" id="buscar" value="Buscar">
+    </div>
+    <div class="renplace">
+        <input type="text" id="old" placeholder="Palabra a renplasar">
+        <input type="text" id="new" placeholder="Nueva palabra">
+        <input type="button" id="but-cambiar" value="Cambiar">
+    </div>
+    <div class="res"></div>
+    <script src="Exercicio-2-10.js"></script>
+    <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et quo officia vel laudantium adipisci reprehenderit ab possimus ipsum minus! Aperiam, aspernatur. Assumenda accusantium nesciunt rem eveniet illo ratione voluptates earum? -->
+</body>
+</html>

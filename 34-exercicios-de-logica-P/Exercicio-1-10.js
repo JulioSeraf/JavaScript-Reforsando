@@ -4,7 +4,6 @@ const diplayOn = document.getElementById('cortar');
 const diplayRep = document.querySelector('.repetir');
 
 /*1) Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10. */
-
 function contador(){
     res.innerText = '';
     let num = [1,2,3,4,5,6,7,8,9,0];
@@ -22,6 +21,13 @@ function contador(){
         res.innerHTML = 'El texto contiene un total de ' + `<br><strong>${text.value.length}</strong><br>` + ' caracteres.';
     };
 };
+// solucion teacher
+const contarCaracteres = (cadena = '')=> 
+    (!cadena)
+    ? console.warn('No existe texto para contar')
+    : console.info(`El texto ${cadena} contiene ${cadena.length} caracteres`);
+
+contarCaracteres('julio');
 
 /*2) Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola". */
 function cortar(){
@@ -46,8 +52,16 @@ function cortar(){
     });
 
 };
+// solución teacher 
+const cortarString = (cadena = '', longitud = undefined)=> (!cadena)
+    ? console.warn('No ingresaste texto')
+    : (longitud === undefined)
+    ? console.warn('No ingresaste longtud para el corte de texto')
+    : console.info(cadena.slice(0,longitud));
 
-
+cortarString('Hola mundo !!',5);
+cortarString();
+cortarString(`hola mundo`);
 /* 3) Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, pe. miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal'].*/
 
 function separarString(){
@@ -63,6 +77,16 @@ function separarString(){
         });
     };
 };
+// solución Teacher
+const separarTexto = (cadena ='', separador = undefined) => (!cadena)
+    ? console.warn('No ingresaste texto para Separar')
+    :(separador === undefined)
+    ? console.info('No adicionaste el separador')
+    : console.info(`Segue la separación del Texor ${cadena.split(separador)}`);
+    
+separarTexto("julio serafim de no Oliveira",' ');
+separarTexto();
+separarTexto('hola texto');
 /*
 4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo. */
 function repetir(){
@@ -78,6 +102,20 @@ function repetir(){
         });
     };
 };
+// solución Teacher
+const reString = (cadena = '', numRe = undefined)=>{
+    if(!cadena) return console.warn('No ingresaste texto');
+    if(numRe === undefined) return console.warn('Informe cuantas veses quieress repetir el texto');
+    if(numRe === 0 ) return console.warn('El numero de repetición no puede ser 0');
+    if(Math.sign(numRe) === -1) return console.warn('El numero de repetición no pude ser negativo');
+    return console.info(cadena.repeat(numRe));
+};
+
+reString(`julio`,4);
+reString();
+reString('mano ');
+reString('juñio', -5);
+reString('maluco',0)
 //lipiador
 document.getElementById('limpiar').addEventListener('click',()=>{
     text.value = '';
