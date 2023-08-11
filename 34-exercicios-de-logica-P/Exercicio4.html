@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0;
+            padding: 0;
+            text-align: center;
+        }
+        input{
+            display: block;
+            margin:10px auto;
+        }
+        .res{
+            width: fit-content;
+            height: fit-content;
+            margin: auto;
+            background-color: lightpink;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgb(223, 31, 63);
+            color: blueviolet;
+        }
+        .temp{
+            display:block;
+            margin:15px auto;
+            width: fit-content;
+            height: fit-content;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgb(223, 31, 63);
+            background-color: lightpink;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercicio 4</h1>
+    <input type="button" value="Limpiar" id="limpiar">
+    <input type="number" id="num">
+    <input type="button" value=" Nº primo" id="primo">
+    <input type="button" value="Par/Impar" id="par-impar">
+    <input type="button" value="C/Temperatura" id="temp">
+    <div class="res">true</div>
+    <div class="temp">
+        <input type="number" id="ce" placeholder="ºC">
+        <input type="button" id="revert" value="Reverter">
+        <input type="number" id="fa" placeholder="ºF">
+    </div>
+    <script src="Exercicio-4-10.js"></script>
+</body>
+</html>
