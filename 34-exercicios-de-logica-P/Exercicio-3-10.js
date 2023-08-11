@@ -16,6 +16,15 @@ const capicúa = document.getElementById('but-igual').addEventListener('click',(
         (nu1 !== nu2)? result.innerHTML = 'false':result.innerHTML = 'true';
 });
 // 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+const factorial = document.getElementById('but-fac').addEventListener('click',()=>{
+    let tot = 1;
+    for(let i = 1; i <= numero.value; i++){
+        tot *= i;
+    };
+    console.log(tot)
+    return result.innerHTML = tot;
+});
+
 document.getElementById('limpiar').addEventListener('click',()=>{
     result.innerHTML = 0;
 })
