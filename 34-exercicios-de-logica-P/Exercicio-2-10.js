@@ -30,14 +30,34 @@ document.getElementById('busPa').addEventListener('click',()=>{
         return res.innerHTML = `La palabra ${palabra.value} se repite ${cont} en el texto`
     });
 });
+// Solución Teacher 
+const textoEnCandena = (cadena = '', texto= '')=>{
+    if(!cadena) return console.warn('No ingresaste el texto largo');
+    if(!texto) return console.warn('No ingresaste el Texto a buscar');
+
+    let i = 0,
+        con = 0;
+
+    while(i !== -1){
+        i = cadena.indexOf(texto,i);
+        if(i!== -1){
+            i++;
+            con++;
+        };
+    };
+    return console.info(`La palabra ${texto} se repete ${con} veces`);
+};
+textoEnCandena('hola mundo, hello mundo', 'mundo')
 // 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
 document.getElementById('pali').addEventListener('click',()=>{
     if(!text.value) return res.innerHTML = 'Informe una Palabra';
-    let pNormal = text.value;
-    let pReverse = text.value.split('').reverse().join('');
+    let pNormal = text.value.toLowerCase();
+    let pReverse = text.value.toLowerCase().split('').reverse().join('');
     if(pNormal === pReverse) return res.innerHTML = `La palabra ${pReverse} es un Palíndrono`;
     return res.innerHTML = 'La palavra informada nos un Palíndrono';
 });
+//
+
 // 8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
 document.getElementById('cambiar').addEventListener('click',()=>{
     let oldString = document.getElementById('old'),
@@ -49,7 +69,15 @@ document.getElementById('cambiar').addEventListener('click',()=>{
         res.innerHTML = text.value.replaceAll(oldString.value,newString.value);
     });
 });
-
+//Solución Teacher 
+const eliminarCaracters = (texto = '', patron = '')=>{
+    (!texto)
+    ? console.warn('No ingresaste un texto')
+    :(!patron)
+    ? console.warn('No ingresaste un patron')
+    :console.info(texto.replace(new RegExp(patron,"ig"),''));
+};
+eliminarCaracters('JULIO SERAFIM DE OLIVEIRA','DE OLIVEIRA')
 //Lipiador 
 document.getElementById('limpiar').addEventListener('click',()=>{
     text.value = '';
