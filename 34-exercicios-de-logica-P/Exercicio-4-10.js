@@ -12,10 +12,18 @@ const primo = (num = '')=>{
     if(num === '0') return result.innerHTML = `El numero no puede ser 0`;
     if(Math.sign(num) === -1) return result.innerHTML = `El valor no puede ser Negativo`;
     num = parseInt(num);
-    console.log(num % 2);
-    if(num % 2 === 1 && num / 1 === num){
-        return result.innerHTML = `El numero ${num} es Primo`;
+    let primo = 0;
+    for(let i = 1; i <= num; i++){
+        if(num%i === 0) {
+            primo++;
+        };
+    };
+    if(primo === 2){
+        result.innerHTML = `${num} es primo`;
+    }else{
+        result.innerHTML = `${num} NO! es  primo`;
     }
+    
 };
 document.getElementById('primo').addEventListener('click',()=> primo(numero.value));
 // 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
