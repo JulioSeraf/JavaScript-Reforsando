@@ -11,7 +11,7 @@
             text-align: center;
         }
         .binDec{
-            display:block;
+            display:none;
             background-color: lightsalmon;
             width: fit-content;
             padding:10px;
@@ -24,7 +24,7 @@
             font-family: 'Courier New', Courier, monospace;
         }
         .desconto{
-            display:none;
+            display:block;
             background-color: lightblue;
             width: fit-content;
             box-shadow: 5px 10px 10px blue;
@@ -38,11 +38,11 @@
     <h1>Exercicio 5</h1>
     <input type="button" id="limpiar" value="limpiar">
     <button onclick="binarioDec()">Binario/Decimal</button>
-    <button>Descontador</button>
+    <button onclick="desconto()">Descontador</button>
     <div class="desconto">
         <input type="number" id="valor" placeholder="Valor:">
         <input type="number" id="desc" placeholder="Porcentagen:">
-        <input type="button" value="Descontar">
+        <input type="button" id="but-desc" value="Descontar">
         <div class="res"></div>
     </div>
     <div class="binDec">

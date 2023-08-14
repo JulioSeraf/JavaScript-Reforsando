@@ -27,6 +27,15 @@ function binarioDec(){
 
 //16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
 
+function desconto(){
+    let valor = document.getElementById('valor'),
+        desc = document.getElementById('desc');
+        valor = parseInt(valor.value);
+        desc = parseInt(desc.value);
+        document.getElementById(`but-desc`).addEventListener('click',()=>{
+            return result[0].innerHTML = `El Valor de ${valor} pos desconto de ${desc}% es $${valor - (valor*(desc/100))}.`
+        });
+};
 
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
