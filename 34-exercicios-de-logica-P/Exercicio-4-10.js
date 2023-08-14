@@ -2,7 +2,8 @@ const numero = document.getElementById('num'),
     result = document.querySelector('.res'),
     celsius = document.getElementById('ce'),
     fahrenheit = document.getElementById('fa'),
-    displayTem = document.querySelector('.temp');
+    displayTem = document.querySelector('.temp'),
+    revez = document.getElementById('revert');
 /*12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.*/
 const primo = (num = '')=>{
     limpiar();
@@ -29,34 +30,36 @@ const parImpar =(num = '')=>{
 };
 document.getElementById('par-impar').addEventListener('click',()=> parImpar(numero.value));
 // 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
-const reverter = ()=>{
-    document.getElementById('revert').addEventListener('click',()=>{
-        celsius.ariaPlaceholder = 'JULI'
-    })
-} 
-reverter();
-const graFah = (cel = '', fal = '')=>{
+
+revez.addEventListener('click',()=>{
+    if(revez.value === 'Valor ºF'){
+        celsius.style.display ='none';
+        celsius.value = '';
+        result.innerHTML = 'Converter aqui';
+        fahrenheit.style.display = 'block'; 
+        revez.value = 'Valor ºC'
+    }else if(revez.value === 'Valor ºC'){
+        celsius.style.display ='block';
+        fahrenheit.value = '';
+        result.innerHTML = 'Converter aqui';
+        fahrenheit.style.display = 'none'; 
+        revez.value = 'Valor ºF'
+    };
+});
+function graFah(cel = '', fal = ''){
     cel = parseInt(cel);
     fal = parseInt(fal);
     result.innerHTML = '';
-    let reves = true;
-
-
-    // switch(valor = 'ce'){
-    //     case 'ce':
-    //         result.innerHTML = (fal - 32)/1.8;
-    //     break;
-    //     case 'fa':
-    //         result.innerHTML = (cel*1.8)+32;
-    //     break;
-    // };
-
+    (revez.value === 'Valor ºF')
+        ? result.innerHTML = ((cel*1.8)+32).toFixed(3) + ' ºF'
+        : result.innerHTML = ((fal - 32)/1.8 ).toFixed(3 )+ ' ºC';
 };
-document.getElementById('temp').addEventListener('click',()=>{
-    displayTem.style.display = "block";
-   graFah(celsius,fahrenheit); 
+document.getElementById('temp').addEventListener('click',()=>{ displayTem.style.display = "block";
+result.innerHTML = 'Converter aqui';
 });
-
+result.addEventListener('click', ()=>{
+    graFah(celsius.value, fahrenheit.value)
+});
 function limpiar(){
     result.innerHTML = '';
     displayTem.style.display = 'none';

@@ -23,9 +23,10 @@
             border-radius: 20px;
             box-shadow: 0 10px 15px rgb(223, 31, 63);
             color: blueviolet;
+            cursor: pointer;
         }
         .temp{
-            display:block;
+            display:none;
             margin:15px auto;
             width: fit-content;
             height: fit-content;
@@ -33,6 +34,12 @@
             border-radius: 20px;
             box-shadow: 0 10px 15px rgb(223, 31, 63);
             background-color: lightpink;
+        }
+        #ce{
+            display:block;
+        }
+        #fa{
+            display: none;
         }
     </style>
 </head>
@@ -43,11 +50,12 @@
     <input type="button" value=" Nº primo" id="primo">
     <input type="button" value="Par/Impar" id="par-impar">
     <input type="button" value="C/Temperatura" id="temp">
-    <div class="res">true</div>
+    <div class="res"></div>
     <div class="temp">
         <input type="number" id="ce" placeholder="ºC">
-        <input type="button" id="revert" value="Reverter">
-        <input type="number" id="fa" placeholder="ºF">
+         <input type="number" id="fa" placeholder="ºF">
+        <input type="button" id="revert" value="Valor ºF">
+        <!-- <input type="number" id="fa" placeholder="ºF"> -->
     </div>
     <script src="Exercicio-4-10.js"></script>
 </body>
