@@ -24,13 +24,22 @@
             font-family: 'Courier New', Courier, monospace;
         }
         .desconto{
-            display:block;
+            display:none;
             background-color: lightblue;
             width: fit-content;
             box-shadow: 5px 10px 10px blue;
             padding: 20px;
             margin: 10px auto;
             border-radius: 5px 30px 5px 20px;
+        }
+        .anos{
+            display: block;
+            background-color: lightgreen;
+            width: fit-content;
+            padding:20px;
+            border-radius: 2px 10px 2px 10px;
+            box-shadow: 0 0 20px green;
+            margin: 10px auto;
         }
     </style>
 </head>
@@ -39,6 +48,7 @@
     <input type="button" id="limpiar" value="limpiar">
     <button onclick="binarioDec()">Binario/Decimal</button>
     <button onclick="desconto()">Descontador</button>
+    <button onclick="anos()">Mira tu idad</button>
     <div class="desconto">
         <input type="number" id="valor" placeholder="Valor:">
         <input type="number" id="desc" placeholder="Porcentagen:">
@@ -49,6 +59,11 @@
         <input type="number" id="num" placeholder="Insira el valor:">
         <input type="button" id="bin" value="Binario">
         <input type="button" id="dec" value="Decimal">
+        <div class="res"></div>
+    </div>
+    <div class="anos">
+        <input type="date" id="date">
+        <input type="button" value="Cualcular">
         <div class="res"></div>
     </div>
     <script src="Exercico-5-10.js"></script>

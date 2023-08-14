@@ -39,4 +39,16 @@ function desconto(){
 
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
+function anos(){
+    let date = document.getElementById('date');
+    let hoy = new Date().toLocaleDateString();
+    date = date.value.split('-')
+    hoy = hoy.split('/');
+    console.log(date)
+    let ano = parseInt(hoy[2]) - parseInt(date[0]),
+       mes = parseInt(hoy[1]) - parseInt(date[1]),
+       dia = parseInt(hoy[0]) - parseInt(date[2]);
+    return result[2].innerHTML = `Nasciste a ${ano} Años ${mes} mes(s) y ${dia} dia(s).`;
+}
+
 // document.body.style.backgroundColor = 'red';
