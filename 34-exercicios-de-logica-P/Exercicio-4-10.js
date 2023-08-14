@@ -16,16 +16,19 @@ const primo = (num = '')=>{
     for(let i = 1; i <= num; i++){
         if(num%i === 0) {
             primo++;
+            if(primo > 2){
+                break;
+            };
         };
     };
     if(primo === 2){
         result.innerHTML = `${num} es primo`;
     }else{
         result.innerHTML = `${num} NO! es  primo`;
-    }
-    
+    }; 
 };
 document.getElementById('primo').addEventListener('click',()=> primo(numero.value));
+
 // 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
 const parImpar =(num = '')=>{
     limpiar();
@@ -68,6 +71,26 @@ result.innerHTML = 'Converter aqui';
 result.addEventListener('click', ()=>{
     graFah(celsius.value, fahrenheit.value)
 });
+//Solución Teacher
+const convertirGrados = (grados = undefined, unidad = undefined)=>{
+    if(grados === undefined) return console.warn(`No ingresaste grados a Convertir`);
+    if(typeof grados !== 'number') return console.warn(`El valor "${grados}" ingresado, No es un Numero`);
+    if(unidad === undefined) return console.warn('No ingresaste la Unidad de conversión');
+    if(typeof unidad !== 'string') return console.warn(`El valor "${unidad}" ingresado, No es una cadena de texto`);
+    if(unidad.length !== 1 || !/(C|F)/.test(unidad)) return console.error('Valor de unidad no reconocido');
+    console.info('ok');
+    if(unidad === 'C'){
+        return console.info(`${grados}ºC = ${Math.round((grados*(9/5) + 32))}ºF`)
+    }
+    if(unidad === 'F'){
+        return console.info(`${grados}ºF = ${Math.round((grados-32)*(9/5))}ºC`);
+    }
+};
+convertirGrados('julio');
+convertirGrados();
+convertirGrados(2);
+convertirGrados(2,'c');
+convertirGrados(3,'F')
 function limpiar(){
     result.innerHTML = '';
     displayTem.style.display = 'none';
