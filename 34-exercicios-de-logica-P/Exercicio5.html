@@ -33,7 +33,7 @@
             border-radius: 5px 30px 5px 20px;
         }
         .anos{
-            display: block;
+            display: none;
             background-color: lightgreen;
             width: fit-content;
             padding:20px;
@@ -45,25 +45,24 @@
 </head>
 <body>
     <h1>Exercicio 5</h1>
-    <input type="button" id="limpiar" value="limpiar">
     <button onclick="binarioDec()">Binario/Decimal</button>
     <button onclick="desconto()">Descontador</button>
     <button onclick="anos()">Mira tu idad</button>
-    <div class="desconto">
+    <div class="desconto dis">
         <input type="number" id="valor" placeholder="Valor:">
         <input type="number" id="desc" placeholder="Porcentagen:">
         <input type="button" id="but-desc" value="Descontar">
         <div class="res"></div>
     </div>
-    <div class="binDec">
+    <div class="binDec dis">
         <input type="number" id="num" placeholder="Insira el valor:">
         <input type="button" id="bin" value="Binario">
         <input type="button" id="dec" value="Decimal">
         <div class="res"></div>
     </div>
-    <div class="anos">
+    <div class="anos dis">
         <input type="date" id="date">
-        <input type="button" value="Cualcular">
+        <input type="button" id="calc" value="Cualcular">
         <div class="res"></div>
     </div>
     <script src="Exercico-5-10.js"></script>

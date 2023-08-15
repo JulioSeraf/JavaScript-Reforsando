@@ -1,11 +1,14 @@
 const result = document.querySelectorAll('.res');
+const disPlay = document.querySelectorAll('.dis');
 //15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
 function binarioDec(){
+    clear(1)
     let valor = document.getElementById('num'),
         binario = document.getElementById('bin'),
         decimal = document.getElementById('dec');
         binario.addEventListener('click',()=>{
            if(valor.value === '') return result[1].innerHTML =`No ingresaste Valor a Coverter`; 
+           if(new RegExp('[2-9]').test(valor.value)) return result[1].innerHTML = `El Valor ingresado solo puede ser 0 y 1`;
            let num = parseInt(valor.value);
            let bin = '';
            for(;num > 1;){
@@ -16,6 +19,7 @@ function binarioDec(){
         });
         decimal.addEventListener('click',()=>{
             if(valor.value === '') return result[1].innerHTML =`No ingresaste Valor a Coverter`;
+            if(new RegExp('[2-9]').test(valor.value)) return result[1].innerHTML = `El Valor ingresado solo puede ser 0 y 1`;
             let num = (valor.value).split('').reverse();
             let dec =0;
             for(let i = 0; i < num.length; i++){
@@ -28,27 +32,48 @@ function binarioDec(){
 //16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
 
 function desconto(){
-    let valor = document.getElementById('valor'),
-        desc = document.getElementById('desc');
-        valor = parseInt(valor.value);
-        desc = parseInt(desc.value);
+    // disPlay[0].style.display = 'block';
+    clear(0);
         document.getElementById(`but-desc`).addEventListener('click',()=>{
-            return result[0].innerHTML = `El Valor de ${valor} pos desconto de ${desc}% es $${valor - (valor*(desc/100))}.`
+            let valor = document.getElementById('valor'),
+            desc = document.getElementById('desc');
+            valor = parseInt(valor.value);
+            desc = parseInt(desc.value);
+            console.log(desc)
+            if(isNaN(valor)) return result[0].innerHTML = 'No ingresaste un valor para Descuelto';
+            if(isNaN(desc)) return result[0].innerHTML = 'No ingresaste un descuelto para el valor';
+            return result[0].innerHTML = `El Valor de $${valor} pos desconto de ${desc}% es $${valor - (valor*(desc/100))}.`
         });
 };
 
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
 function anos(){
-    let date = document.getElementById('date');
+   result[2].innerHTML = '';
+    clear(2);
+    document.getElementById('calc').addEventListener('click',()=>{
+        let date = document.getElementById('date');
     let hoy = new Date().toLocaleDateString();
     date = date.value.split('-')
     hoy = hoy.split('/');
-    console.log(date)
     let ano = parseInt(hoy[2]) - parseInt(date[0]),
        mes = parseInt(hoy[1]) - parseInt(date[1]),
        dia = parseInt(hoy[0]) - parseInt(date[2]);
+       console.log(mes)
+       if(isNaN(ano)) return result[2].innerHTML = `No ingresaste el Año!`;
+       if(isNaN(mes)) return result[2].innerHTML = `No ingresaste el Mes!`;
+       if(isNaN(dia)) return result[2].innerHTML = `No ingresaste el Dia!`;
     return result[2].innerHTML = `Nasciste a ${ano} Años ${mes} mes(s) y ${dia} dia(s).`;
-}
+    });
+    
+};
+// document.getElementById('limpiar').addEventListener('click',()=>{
+//Limpador 
+function clear(nu){
+    disPlay.forEach((item,i) => {
+        item.style.display = 'none';
+        if(i === nu) item.style.display ='block';
+    });
+};
 
 // document.body.style.backgroundColor = 'red';
