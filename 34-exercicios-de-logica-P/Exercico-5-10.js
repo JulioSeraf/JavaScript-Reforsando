@@ -62,7 +62,18 @@ function desconto(){
             return result[0].innerHTML = `El Valor de $${valor} pos desconto de ${desc}% es $${valor - (valor*(desc/100))}.`
         });
 };
+//Solución Teacher 
+const aplicarDescuento =(monto = undefined, descuento = 0)=>{
+    if(monto === undefined) return console.warn('No ingresaste valor');
+    if(typeof monto !== 'number') return console.warn('El valor ingresado, No es un numero');
+    if(monto === 0) return console.warn('El valor no puede ser 0');
+    if(Math.sign(monto) === -1) return console.warn('El valor no puede ser negativo');
+    if(typeof descuento !== 'number')return console.warn('El valor ingresado en descuento no es un numero');
+    if(Math.sign(descuento === -1)) return console.warn('El valor de decuento no puede ser negativo');
+    return console.info(`$${monto} - ${descuento}% = $${monto - ((monto*descuento)/ 100)}`)
+}
 
+aplicarDescuento(2000,30);
 //17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
 
 function anos(){
@@ -84,7 +95,21 @@ function anos(){
     });
     
 };
-// document.getElementById('limpiar').addEventListener('click',()=>{
+//Solución Teacher 
+const calcularAno = (fecha = undefined)=>{
+    if(fecha === undefined) return console.warn('No ingresaste la fecha');
+    if(!(fecha instanceof Date)) return console.warn(`El valor ingresado no es un DATA`);
+    let hoy = new Date().getTime() - fecha.getTime();
+        let enMes = 1000*60*60*24*365,
+        anosHumanos = Math.floor(hoy/enMes);
+    return (Math.sign(anosHumanos)=== -1)
+    ? console.info(`Falta ${Math.abs(anosHumanos)} año para el años ${fecha.getFullYear()}`)
+    :(Math.sign(anosHumanos)=== 1)
+    ? console.info(`Han passado ${anosHumanos} desde el años ${fecha.getFullYear()}`)
+    :console.info(`No hay diferencia estamos en el años atual ${fecha.getFullYear()}`);
+};
+calcularAno(12);
+calcularAno(new Date(1997,0,14));
 //Limpador 
 function clear(nu){
     disPlay.forEach((item,i) => {
