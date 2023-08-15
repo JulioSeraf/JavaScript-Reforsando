@@ -28,6 +28,23 @@ function binarioDec(){
             return result[1].innerHTML = `El Decimal del Binario "${valor.value}" es "${dec}".`
         });
 };
+//Solucion Teacher
+const convertirBD = (numero = undefined, base = undefined)=>{
+    if(numero === undefined || base === undefined) return console.warn('No ingresaste un numero');
+    if(typeof numero !== 'number') return console.warn(`El Valor "${numero}" ingresado, No es un numero`);
+    if(typeof base !== 'number') return console.warn(`El Valor "${base}" ingresado, No es un numero`);
+    if(base===2){
+        return console.info(`El decimal del Binario ${numero} base ${base} = ${parseInt(numero, base)} base 10 `)
+    }else if(base === 10){
+        return console.info(`El decimal del Binario ${numero} base ${base} = ${numero.toString(2)} base 2`)
+    }else{
+        return console.error('El tipo de base a convertir no es correto');
+    };
+    
+};
+convertirBD(10011,10);
+convertirBD(4,10);
+// convertirBD();
 
 //16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
 
