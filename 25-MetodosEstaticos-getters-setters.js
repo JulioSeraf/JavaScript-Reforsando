@@ -12,24 +12,24 @@ class Perro{
         this.raza = null;
 
     }
-ladrar(){
-    console.log('guaauuu!!, guauuu!!')
-};
-static soyUnPerro(){
-    console.log('Hola soy un perro!!, te lo pude provar mira');
-};
-// Normalmente para destinguir que un metodo es getter o setters antes de criar su nombre anteponemos GET OR SET a su numbre
-//Metodo getter(metodo obtenedor)
-get getRaza(){
-    // normalmente lo que hace un metodo obtenedor es retornar un valor
-    return this.raza;
-};
-// Para criar un metodo estabelecedor(metodo que modifica el atributo/propiedad) usamos Set y le passamos un paramentro a usar para modiicar 
+    ladrar(){
+        console.log('guaauuu!!, guauuu!!')
+    };
+    static soyUnPerro(){
+        console.log('Hola soy un perro!!, te lo pude provar mira');
+    };
+    // Normalmente para destinguir que un metodo es getter o setters antes de criar su nombre anteponemos GET OR SET a su numbre
+    //Metodo getter(metodo obtenedor)
+    get getRaza(){
+        // normalmente lo que hace un metodo obtenedor es retornar un valor
+        return this.raza;
+    };
+    // Para criar un metodo estabelecedor(metodo que modifica el atributo/propiedad) usamos Set y le passamos un paramentro a usar para modiicar 
 
-set setRaza(raza){
-    // despues indicamos a cual atributo modificar neste caso this.raza
-    this.raza = raza;
-}
+    set setRaza(raza){
+        // despues indicamos a cual atributo modificar neste caso this.raza
+        this.raza = raza;
+    }
 }
 // estanciar la clase seria pasarles los paramentros o sea criar el objeto en si
 const rex = new Perro('rex','macho');
