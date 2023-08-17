@@ -38,6 +38,17 @@ const promedio = (arr)=>{
     for(i of arr){
         tot += i;
     };
+    // solución Teacher
+    //============================================
+    arr.reduce((total,val,id,arr)=>{
+        total += val;
+        if(id === arr.length -1){
+            console.info(`El Promedio de ${arr.join(' + ')}: es ${total/ arr.length}`)
+        }else{
+            return total;
+        }
+    })
+    //=========================================
     return console.log((tot / arr.length).toFixed(1));
 }
 promedio([2,4,5,3,4,5,10])
