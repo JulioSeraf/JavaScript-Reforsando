@@ -13,10 +13,10 @@ class Perro{
 
     }
     ladrar(){
-        console.log('guaauuu!!, guauuu!!')
+        console.log('guaauuu!!, guauuu!!' )
     };
     static soyUnPerro(){
-        console.log('Hola soy un perro!!, te lo pude provar mira');
+        console.log('Hola soy un perro!!, te lo pude provar mira' );
     };
     // Normalmente para destinguir que un metodo es getter o setters antes de criar su nombre anteponemos GET OR SET a su numbre
     //Metodo getter(metodo obtenedor)
