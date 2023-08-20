@@ -31,26 +31,5 @@
         console.log("tres");
     };
     uno();
-    console.log("fim");
 })();
-
 //Código asíncrono No bloqueante
-( ()=>{console.log("Código asíncrono");
-    console.log("inicio");
-    function dos(){
-        setTimeout(()=>{
-            console.log('dos');
-        },1000);
-    };
-    function uno(){
-        setTimeout(()=>{
-            console.log('uno');
-        },0);
-        dos();
-        console.log('tres');
-    };
-    uno();
-    console.log("fim");
-}
-)();
-// JavaScript asincrono y no bloqueante. con un loop de eventes implementado en un solo hilo(single thread) para operadores de entrada y salida input / output.
