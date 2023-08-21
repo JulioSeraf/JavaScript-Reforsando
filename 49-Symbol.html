@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevos tipos de datos en JS</title>
+</head>
+<body>
+    <h1>Nuevos tipos de datos en JS</h1>
+<!-- Symbol es un tipo de dato primitivo como(string, number, booleang, undefined)-->
+<!-- Symbol cria un identificador unico para poder trabajar internament, se suele utilizar para identificar propriedades privadas de objetos -->
+    <script>
+        // Para criar un symbol criamos la proprieda sin usar new 
+        let id = Symbol('id') 
+        let id1 = Symbol('id1')// dentro le passamos una cadena de texto q servira como una etiqueta identificadora.
+        console.log(id === id1);
+        console.log(id, id1);
+        console.log(typeof id, typeof id1)
+
+        const NOMBRE = Symbol();
+        const persona = {
+            // al usar [] em una propiedad en objeto JS ya lo identifica como un symbol. Que lo torna un propiedad privada, incluso se recorremos el objeto con un for of / in no lo mostra.
+            [NOMBRE] : 'julio',
+            altura: 1.93,
+            // podemos ate usar el mismo nombre de la propieda symbol para otra propiedad
+            NOMBRE: 'Ojuara'
+        };
+        console.log(persona)
+
+        //Para poder llamar la propiedad privada Symbol de un objeto al invez de usar el "." usarmos "[]"
+        console.log(persona[NOMBRE]);
+
+        // Para recorrer el objeto para mostrar los symbol que contine ja que for of/in o lo muestra usamos 
+
+        console.log(Object.getOwnPropertySymbols(persona)) // le pasamos el objeto a percorrer
+    </script>
+</body>
+</html>
