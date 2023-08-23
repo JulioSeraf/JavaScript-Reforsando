@@ -39,6 +39,9 @@ const obj3 = {
 obj3.imprimir()
 
 function Persona(nombre){
+    // antes de las arrow fuction para solucionar el pasar paramentro a una function anonimal desde otra function se criaba un variavel y le passava el this.
+    //ex: var that = this; 
+    // that.nombre = nombre;
     this.nombre = nombre;
     // return console.log(this.nombre)
 
