@@ -1,0 +1,11 @@
+{
+    "nombre" : "Julio",
+    "apellido":"Serafim",
+    "telefono" : "344-233-555",
+    "edad": "26",
+    "objeto": {
+        "instragam": "@julio-sr23",
+        "emal": "serafimone97@gmail.com"
+    },
+    "nulo": null
+}
