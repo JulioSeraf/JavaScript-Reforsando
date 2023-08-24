@@ -7,7 +7,27 @@
     <style>
         :root{
             --style-red: red;
-            --style-foot: blue;
+            --style-foot: rgba(0, 0, 255, 0.5);
+        }
+        .cards{
+            display: inline-block;
+            background-color: var(--style-foot);
+            color: var(--style-red);
+        }
+        .card figcaption{
+            padding: 1rem;
+        }
+        .rotate-45{
+            transform: rotate(45deg);
+        }
+        .rotate-135{
+            transform: rotate(135deg);
+        }
+        .opacity-80{
+            opacity: .8;
+        }
+        .sepia{
+            filter: sepia(1);
         }
     </style>
 </head>
@@ -25,28 +45,28 @@
     </nav>
     <input type="text" name="nombre" placeholder="Nombre:">
     <a href="62-DOM-index.html" class="link-dom" data-description="Documente Objecto Model">DOM</a>
-    <section class="cards">
-        <figure>
+    <section>
+        <figure class="cards">
             <img src="https://picsum.photos/id/0/200/300" alt="tech">
             <figcaption>Tech</figcaption>
         </figure>
-        <figure>
+        <figure class="cards">
             <img src="https://picsum.photos/id/40/200/300" alt="animals">
             <figcaption>Animals</figcaption>
         </figure>
-        <figure>
+        <figure class="cards">
             <img src="https://picsum.photos/id/22/200/300" alt="people">
             <figcaption>People</figcaption>
         </figure>
-        <figure>
+        <figure class="cards">
             <img src="https://picsum.photos/id/49/200/300" alt="city">
             <figcaption>City</figcaption>
         </figure>
-        <figure>
+        <figure class="cards">
             <img src="https://picsum.photos/id/10/200/300" alt="nature">
             <figcaption>Nature</figcaption>
         </figure>
     </section>
-    <script src="64-DOM-Estilos-VariablesCss.js"></script>
+    <script src="65-DOM-Class-Css.js"></script>
 </body>
 </html>
