@@ -29,6 +29,20 @@
         .sepia{
             filter: sepia(1);
         }
+        .eventos-flujo  div{
+            padding: 4rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+        .uno{
+            background-color: yellow;
+        }
+        .dos{
+            background-color:gold;
+        }
+        .tres{
+            background-color: lightyellow;
+        }
     </style>
 </head>
 <body>
@@ -88,6 +102,19 @@
     <br>
     <br>
     <button id="evento-remove">removendo Evento con manejador multiple</button>
-    <script src="73-DOM-EventosConParametro-Y-RemoverEventos.js"></script>
+    <br><br>
+    <h4>Flujo de Eventos</h4>
+    <section class="eventos-flujo">
+        <div class="uno">
+            1
+            <div class="dos">
+                2
+                <div class="tres">
+                3
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="74-DOM-Flujo-de-Eventos-Burbuja-y-Captura.js"></script>
 </body>
 </html>
