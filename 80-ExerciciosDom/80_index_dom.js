@@ -6,7 +6,7 @@ const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
 relojOff = document.querySelector('#relojOff');
 //alarme 
-const som = document.getElementById('alarme'),
+const som = 'sons/alarme.mp3',
     alarmeOn = document.getElementById('alarmeOn'),
     alarmeOff = document.getElementById('alarmeOff');
 relojDigital(relojOn,relojOff,reloj)
