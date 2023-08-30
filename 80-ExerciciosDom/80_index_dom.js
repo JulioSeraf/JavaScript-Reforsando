@@ -1,7 +1,13 @@
 import menuHamburg from "./81_Menu_Hamburg.js";
 import relojDigital from "./82_DOM_Reloj_Digital.js";
 import alarme from "./83_DOM_Alarma.js";
+import { tecladoAtajo,playBall} from "./84_DOM_Eventos_teclado.js";
 // reloj
+scroll({
+    top: 600,
+    left: 0,
+    behavior: "smooth",
+    })
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
 relojOff = document.querySelector('#relojOff');
@@ -9,8 +15,13 @@ relojOff = document.querySelector('#relojOff');
 const som = 'sons/alarme.mp3',
     alarmeOn = document.getElementById('alarmeOn'),
     alarmeOff = document.getElementById('alarmeOff');
+
+//atajo teclado================
+const ball = document.getElementById('ball');
 relojDigital(relojOn,relojOff,reloj)
 alarme(alarmeOn,alarmeOff,som);
+// tecladoAtajo()
+playBall(ball)
 menuHamburg(`#menu-hamburg`,'#button-hamburg','.button-inMenu');
 export function selectEjercicio(){
     document.addEventListener('click',(e)=>{
