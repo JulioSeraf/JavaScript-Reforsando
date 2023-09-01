@@ -107,12 +107,10 @@ section h1{
     margin: auto;
     border:5px solid red;
     box-shadow: 0px 10px 8px black, black 0px 2px 10px inset;
-    overflow: hidden;
 }
 #ball{
     width: 50px;
     min-height:50px;
-    padding: 10px;
     border-radius: 50%;
     background-color: gold;
 }
