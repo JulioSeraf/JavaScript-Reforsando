@@ -114,5 +114,15 @@ section h1{
     border-radius: 50%;
     background-color: gold;
 }
-.ballmove{
+/* CountDown */
+#section3> form > *{
+    text-align: center;
+    display: block;
+    margin:auto;
+}
+#section3 div{
+    text-align: center;
+   font-size: em;
+    letter-spacing:5px;
+    padding-top: 20px;
 }

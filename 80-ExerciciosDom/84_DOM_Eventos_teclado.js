@@ -30,11 +30,9 @@ const playBall = (ball,cuadro)=>{
         // if(e.shiftKey && e.key.toLowerCase() === 'arrowleft'){
         //     ball.style.cssText = `transform: translate(${leftRight-=5}px,${downTop}px);`;
         // };
-
+        //solución teacher 
         let limiteBall = ball.getBoundingClientRect(),
         limiteCuadro = cuadro.getBoundingClientRect();
-        console.log(limiteBall,limiteCuadro)
-        //solución teacher 
         switch(e.key.toLowerCase()){
             case 'arrowleft':
                 e.preventDefault();

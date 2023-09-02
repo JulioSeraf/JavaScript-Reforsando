@@ -2,6 +2,7 @@ import menuHamburg from "./81_Menu_Hamburg.js";
 import relojDigital from "./82_DOM_Reloj_Digital.js";
 import alarme from "./83_DOM_Alarma.js";
 import {shortcuts,playBall} from "./84_DOM_Eventos_teclado.js";
+import { countDown } from "./85_DOM_CountDown.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -14,15 +15,22 @@ const som = 'sons/alarme.mp3',
 //atajo teclado================
 const $ball = document.getElementById('ball'),
     $cuadro = document.getElementById('cuadro');
-console.log($cuadro.getBoundingClientRect)
+//CountDown===================
+const $date = document.getElementById('date'),
+    $enviar = document.getElementById('enviar'),
+    msgFinal = document.querySelector('.count');
+//Llamadas de functione ============
 relojDigital(relojOn,relojOff,reloj)
 alarme(alarmeOn,alarmeOff,som);
 shortcuts()
 playBall($ball,$cuadro)
 menuHamburg(`#menu-hamburg`,'#button-hamburg','.button-inMenu');
+countDown($date,$enviar,msgFinal)
+
+//rollagem de scroll===============
 export function selectEjercicio(){
     document.addEventListener('click',(e)=>{
-        console.log()
+       
         switch(e.target.id){
             case 'eje1':
                 scroll({
