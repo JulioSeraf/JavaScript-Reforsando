@@ -25,7 +25,7 @@ alarme(alarmeOn,alarmeOff,som);
 shortcuts()
 playBall($ball,$cuadro)
 menuHamburg(`#menu-hamburg`,'#button-hamburg','.button-inMenu');
-countDown($date,$enviar,msgFinal)
+countDown(msgFinal)
 
 //rollagem de scroll===============
 export function selectEjercicio(){
