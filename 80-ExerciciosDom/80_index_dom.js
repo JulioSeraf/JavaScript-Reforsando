@@ -4,6 +4,7 @@ import alarme from "./83_DOM_Alarma.js";
 import {shortcuts,playBall} from "./84_DOM_Eventos_teclado.js";
 import { countDown } from "./85_DOM_CountDown.js";
 import scrollBtn from "./85_DOM_Scroll.js";
+import darkLigth from "./86_DOM_Darklight.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -73,3 +74,4 @@ playBall($ball,$cuadro);
 menuHamburg(`#menu-hamburg`,'#button-hamburg','.button-inMenu');
 countDown(msgFinal);
 scrollBtn($scrollBtn);
+darkLigth('.btnLight')
