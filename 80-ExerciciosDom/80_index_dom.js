@@ -5,6 +5,7 @@ import {shortcuts,playBall} from "./84_DOM_Eventos_teclado.js";
 import { countDown } from "./85_DOM_CountDown.js";
 import scrollBtn from "./85_DOM_Scroll.js";
 import darkLigth from "./86_DOM_Darklight.js";
+import resposeJS from "./90_DOM_ResponsiveJavaScript.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -23,6 +24,8 @@ const $date = document.getElementById('date'),
     msgFinal = document.querySelector('.count');
 //rollagem de scroll===============
 const $scrollBtn = document.getElementById('scrollBtn');
+//resposive JavaScript
+const $contener = document.querySelector('#section4');
 export function selectEjercicio(){
     document.addEventListener('click',(e)=>{
         switch(e.target.id){
@@ -76,3 +79,4 @@ menuHamburg(`#menu-hamburg`,'#button-hamburg','.button-inMenu');
 countDown(msgFinal);
 scrollBtn($scrollBtn);
 darkLigth('.btnLight')
+resposeJS($contener);
