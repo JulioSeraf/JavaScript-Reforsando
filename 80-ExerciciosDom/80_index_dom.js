@@ -65,6 +65,7 @@ export function selectEjercicio(){
        
     });
 };
+$ball.setAttribute
 selectEjercicio();
 //Llamadas de functione ============
 relojDigital(relojOn,relojOff,reloj)

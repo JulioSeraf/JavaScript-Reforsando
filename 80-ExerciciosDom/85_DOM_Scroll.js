@@ -8,7 +8,7 @@ const scrollBtn = (btn)=>{
         };  
     });
     d.addEventListener('click', (e)=>{ 
-        if(e.target.matches("#"+btn.id)){
+        if(e.target.matches("#"+btn.id) || e.target.matches("#"+btn.id +' *')){
             scroll({
                 top:0,
                 left:0,
