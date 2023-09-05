@@ -14,7 +14,6 @@ const shortcuts = ()=>{
 };
 
 const playBall = (ball,cuadro)=>{
-    let downTop = 0, leftRight = 0;
     let x=0 ,y=0;
     d.addEventListener('keydown',(e)=>{
         // // mi solucion

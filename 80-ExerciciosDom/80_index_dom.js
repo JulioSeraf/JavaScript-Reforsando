@@ -6,6 +6,7 @@ import { countDown } from "./85_DOM_CountDown.js";
 import scrollBtn from "./85_DOM_Scroll.js";
 import darkLigth from "./86_DOM_Darklight.js";
 import resposeJS from "./90_DOM_ResponsiveJavaScript.js";
+import responsiveTest from "./91_DOM_ResponsiveTest.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -34,46 +35,26 @@ linksArray = [
    " <a href ='https://www.youtube.com/watch?v=6IwUl-4pAzc' target='_blank'> Ver Video <a/>", 
    "<a href ='https://www.google.com/maps/place/Sevilla/@37.3750035,-6.2504149,11z/data=!3m1!4b1!4m15!1m8!3m7!1s0xc42e3783261bc8b:0xa6ec2c940768a3ec!2zRXNwYcOxYQ!3b1!8m2!3d40.463667!4d-3.74922!16zL20vMDZta2o!3m5!1s0xd126c1114be6291:0x34f018621cfe5648!8m2!3d37.3890924!4d-5.9844589!16zL20vMDlmM2M?hl=es&entry=ttu' target='_blank'> Ver Mapa <a/>"
 ];
+
+
 export function selectEjercicio(){
+    let painel = document.querySelector('.painel');
+    let buttons = painel.querySelectorAll('button');
+    function scrollMove(x){
+        let conttTop = 0;
+        scroll({
+            top: conttTop + 600*x,
+            left: 0,
+            behavior: "smooth",
+            })
+    }
     document.addEventListener('click',(e)=>{
-        switch(e.target.id){
-            case 'eje1':
-                scroll({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                    })
-            break;
-            case 'eje2':
-                scroll({
-                    top: 600,
-                    left: 0,
-                    behavior: "smooth",
-                    })
-            break;
-            case 'eje3':
-                scroll({
-                    top: 1210,
-                    left: 0,
-                    behavior: "smooth",
-                    });
-            break;
-            case 'eje4':
-                scroll({
-                    top: 1817,
-                    left: 0,
-                    behavior: "smooth",
-                    });
-            break;
-            case 'eje5':
-                scroll({
-                    top: 2433,
-                    left: 0,
-                    behavior: "smooth",
-                    });
-            break;
-        };
-       
+        for(let i = 1; i <= buttons.length; i++){
+            switch(e.target.id){
+                case `eje${i}`:scrollMove(i-1)
+                break;
+            }
+        }
     });
 };
 //Llamadas de functione ============
@@ -87,6 +68,5 @@ export function selectEjercicio(){
     scrollBtn($scrollBtn);
     resposeJS("youtube",'(max-width: 400px)',videoMap[0],linksArray[0]);
     resposeJS("gmaps",'(max-width: 400px)',videoMap[1],linksArray[1]);
-
-
-darkLigth('.btnLight')
+    darkLigth('.btnLight');
+    responsiveTest('responsiveTester');

@@ -178,3 +178,18 @@ section h1{
     align-items: center;
     margin: 15px 0;
 }
+/* Responsive teste */
+#section5 h1{
+   margin-bottom: 20px;
+}
+#section5 input[type="text"],input[type="url"]{
+    display: flex;
+    margin:5px auto;
+    padding:5px;
+    
+}
+#section5 div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
