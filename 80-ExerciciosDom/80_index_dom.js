@@ -30,14 +30,10 @@ const videoMap = [
     `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6IwUl-4pAzc?si=RU6vZsYqzUlV2WKe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`,
     `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12569647.411982726!2d-14.318149723014361!3d39.722540636276776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xc42e3783261bc8b%3A0xa6ec2c940768a3ec!2zRXNwYcOxYQ!5e0!3m2!1ses!2ses!4v1693845883403!5m2!1ses!2ses" width="500" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
 ],
-linksArray = [{
-    title: 'Responsive con JavaScript',
-    href: 'https://www.youtube.com/watch?v=6IwUl-4pAzc'
-},
-{
-    title: "Mapa Sevilla",
-    href: "https://www.google.com/maps/place/Sevilla/@37.3750035,-6.2504149,11z/data=!3m1!4b1!4m15!1m8!3m7!1s0xc42e3783261bc8b:0xa6ec2c940768a3ec!2zRXNwYcOxYQ!3b1!8m2!3d40.463667!4d-3.74922!16zL20vMDZta2o!3m5!1s0xd126c1114be6291:0x34f018621cfe5648!8m2!3d37.3890924!4d-5.9844589!16zL20vMDlmM2M?hl=es&entry=ttu"
-}]
+linksArray = [
+   " <a href ='https://www.youtube.com/watch?v=6IwUl-4pAzc' target='_blank'> Ver Video <a/>", 
+   "<a href ='https://www.google.com/maps/place/Sevilla/@37.3750035,-6.2504149,11z/data=!3m1!4b1!4m15!1m8!3m7!1s0xc42e3783261bc8b:0xa6ec2c940768a3ec!2zRXNwYcOxYQ!3b1!8m2!3d40.463667!4d-3.74922!16zL20vMDZta2o!3m5!1s0xd126c1114be6291:0x34f018621cfe5648!8m2!3d37.3890924!4d-5.9844589!16zL20vMDlmM2M?hl=es&entry=ttu' target='_blank'> Ver Mapa <a/>"
+];
 export function selectEjercicio(){
     document.addEventListener('click',(e)=>{
         switch(e.target.id){
@@ -90,6 +86,7 @@ export function selectEjercicio(){
     countDown(msgFinal);
     scrollBtn($scrollBtn);
     resposeJS("youtube",'(max-width: 400px)',videoMap[0],linksArray[0]);
-    resposeJS("youtube",'(max-width: 400px)',videoMap[1],linksArray[1]);
+    resposeJS("gmaps",'(max-width: 400px)',videoMap[1],linksArray[1]);
+
 
 darkLigth('.btnLight')

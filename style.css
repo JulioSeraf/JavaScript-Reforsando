@@ -172,7 +172,9 @@ section h1{
 }
 /* responsive con JavaScript */
 
-#section4 iframe{
-    display: block;
-    margin: 15px auto;
+#section4 div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
 }
