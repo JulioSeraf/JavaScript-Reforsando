@@ -9,6 +9,7 @@ import resposeJS from "./90_DOM_ResponsiveJavaScript.js";
 import responsiveTest from "./91_DOM_ResponsiveTest.js";
 import userAgent from "./92_DOM_ DetecciónDispositivosUserAgent.js";
 import redeDeteccion from "./93_DOM_DeteccionDeEstadoRede.js";
+import webcam from "./94_DOM_DeteccionDespositivosMedias.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -74,3 +75,4 @@ export function selectEjercicio(){
     responsiveTest('responsiveTester');
     userAgent();
     redeDeteccion();
+    webcam('webcam');
