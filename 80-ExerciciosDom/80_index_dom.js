@@ -8,6 +8,7 @@ import darkLigth from "./86_DOM_Darklight.js";
 import resposeJS from "./90_DOM_ResponsiveJavaScript.js";
 import responsiveTest from "./91_DOM_ResponsiveTest.js";
 import userAgent from "./92_DOM_ DetecciónDispositivosUserAgent.js";
+import redeDeteccion from "./93_DOM_DeteccionDeEstadoRede.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -72,3 +73,4 @@ export function selectEjercicio(){
     darkLigth('.btnLight');
     responsiveTest('responsiveTester');
     userAgent();
+    redeDeteccion();

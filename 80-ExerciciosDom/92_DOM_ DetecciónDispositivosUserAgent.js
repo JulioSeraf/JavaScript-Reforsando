@@ -29,8 +29,6 @@ export default function userAgent(){
                     return this.MicrosoftEdge()||this.chrome()||this.firefox()||this.opera()||this.safari();
                 }
             };
-            console.log(isDesktop.any())
-
             listInfo.innerHTML = `<ul>
             <li>User Agent: <strong>${userA}</strong></li>
             <li>Plataforma: <strong>${isMobile.any()?isMobile.any():isDesktop.any()}</strong></li>
