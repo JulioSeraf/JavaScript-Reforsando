@@ -7,6 +7,7 @@ import scrollBtn from "./85_DOM_Scroll.js";
 import darkLigth from "./86_DOM_Darklight.js";
 import resposeJS from "./90_DOM_ResponsiveJavaScript.js";
 import responsiveTest from "./91_DOM_ResponsiveTest.js";
+import userAgent from "./92_DOM_ DetecciónDispositivosUserAgent.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -70,3 +71,4 @@ export function selectEjercicio(){
     resposeJS("gmaps",'(max-width: 400px)',videoMap[1],linksArray[1]);
     darkLigth('.btnLight');
     responsiveTest('responsiveTester');
+    userAgent();
