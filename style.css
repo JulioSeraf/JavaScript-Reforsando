@@ -215,3 +215,23 @@ section h1{
 .conexionOff{
     background-color: lightcoral;
 }
+/* filtro de Busqueda  */
+
+#section9 #cards{
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+    margin: auto;
+}
+#section9 input{
+    width: 200px;
+    margin: 10px auto;
+    border: 2px solid black;
+}
+#cards figure{
+    font-family: 1.3em;
+    font-weight:bolder;
+}
+#cards figure img{
+    width: clamp(80px, 300px, 150px);
+    box-shadow: 10px 10px 10px black;
+}

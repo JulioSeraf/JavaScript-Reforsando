@@ -11,6 +11,7 @@ import userAgent from "./92_DOM_ DetecciónDispositivosUserAgent.js";
 import redeDeteccion from "./93_DOM_DeteccionDeEstadoRede.js";
 import webcam from "./94_DOM_DeteccionDespositivosMedias.js";
 import geolocalizar from "./95_DOM_Geolocalizacion.js";
+import filtro from "./96_DOM_FiltroDeBusqueda.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -78,3 +79,4 @@ export function selectEjercicio(){
     redeDeteccion();
     webcam('webcam');
     geolocalizar('geo');
+    filtro('cards','seach')
