@@ -4,20 +4,15 @@ export default function filtro(id,inputId){
         $div = document.getElementById(id),
         $seach = document.getElementById(inputId),
         $pelis = $div.querySelectorAll('figure');
-        let $noEncontrada = d.createElement('p');
-        $div.insertAdjacentElement("beforebegin",$noEncontrada);
     d.addEventListener('keyup',(e)=>{
+
+        if(e.key === 'Escape') $seach.value = '';
+        
         let expReg = new RegExp($seach.value ,"gi");
         $pelis.forEach(peli =>{
-            peli.style.display = 'none';
-            if(peli.outerText.match(expReg)){
-                console.log($noEncontrada)
-                peli.style.display = 'block'
-            }else{
-                $noEncontrada.innerHTML = `<p> La Pelicula "${$seach.value}" no fue encontrada</p>`;
-              }
-         
-            if($seach.value === '') peli.style.display = 'block';
+            (peli.outerText.match(expReg))
+            ?peli.classList.remove('filter')
+            :peli.classList.add('filter');
         })
       
            

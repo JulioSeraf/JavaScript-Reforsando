@@ -12,6 +12,7 @@ import redeDeteccion from "./93_DOM_DeteccionDeEstadoRede.js";
 import webcam from "./94_DOM_DeteccionDespositivosMedias.js";
 import geolocalizar from "./95_DOM_Geolocalizacion.js";
 import filtro from "./96_DOM_FiltroDeBusqueda.js";
+import sorteoDigital from "./97_DOM_SorteoDigital.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -48,7 +49,7 @@ export function selectEjercicio(){
     function scrollMove(x){
         let conttTop = 0;
         scroll({
-            top: conttTop + 600*x,
+            top: conttTop + 615*x,
             left: 0,
             behavior: "smooth",
             })
@@ -79,4 +80,5 @@ export function selectEjercicio(){
     redeDeteccion();
     webcam('webcam');
     geolocalizar('geo');
-    filtro('cards','seach')
+    filtro('cards','seach');
+    sorteoDigital('#sortear', '.premio')
