@@ -6,5 +6,5 @@ export default function sorteoDigital(id,lista){
             let nu = Math.round(Math.random()*$list.length)
             alert(`Parabéns has ganado el Curso de: "${$list[nu].textContent}", Felicidades!!`);
         };
-    })
-}
+    });
+};

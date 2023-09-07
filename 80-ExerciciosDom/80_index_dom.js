@@ -13,6 +13,7 @@ import webcam from "./94_DOM_DeteccionDespositivosMedias.js";
 import geolocalizar from "./95_DOM_Geolocalizacion.js";
 import filtro from "./96_DOM_FiltroDeBusqueda.js";
 import sorteoDigital from "./97_DOM_SorteoDigital.js";
+import ScrollSpy from "./98_DOM_ScrollSpy.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -81,4 +82,5 @@ export function selectEjercicio(){
     webcam('webcam');
     geolocalizar('geo');
     filtro('cards','seach');
-    sorteoDigital('#sortear', '.premio')
+    sorteoDigital('#sortear', '.premio');
+    ScrollSpy('.screen','#right',"#left");

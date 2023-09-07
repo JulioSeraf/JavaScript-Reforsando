@@ -36,6 +36,7 @@ section h1{
     background-color: rgba(173, 216, 230, 0.194);
     transition: 1s;
     overflow-y:auto;
+    z-index: 999;
 }
 .painel{
     position: fixed;
@@ -260,4 +261,34 @@ section h1{
 
 .backcolor{
     background-color: lightgrey;
+}
+/* ScrollSpy */
+#section11 .screen{
+    position: relative;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+    width: 80%;
+    min-height: 60vh;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+}
+#section11 .screen > button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px black;
+    border: none;
+    cursor: pointer;
+}
+.screen #left{
+    position: absolute;
+    left: -5%;
+    top:45%;
+}
+.screen #right{
+    position: absolute;
+    right: -5%;
+    top:45%;
 }
