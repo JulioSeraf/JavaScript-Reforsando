@@ -59,7 +59,7 @@ export function selectEjercicio(){
     document.addEventListener('click',(e)=>{
         for(let i = 1; i <= buttons.length; i++){
             switch(e.target.id){
-                case `eje${i}`:scrollMove(i-1)
+                case `section${i}`:scrollMove(i-1)
                 break;
             }
         }
