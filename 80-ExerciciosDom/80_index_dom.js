@@ -83,4 +83,5 @@ export function selectEjercicio(){
     geolocalizar('geo');
     filtro('cards','seach');
     sorteoDigital('#sortear', '.premio');
-    ScrollSpy('.screen','#right',"#left");
+    ScrollSpy('.screen','#right',"#left",'.text','.imagen');
+    $ball.replaceChild
