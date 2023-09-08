@@ -38,6 +38,22 @@ section h1{
     overflow-y:auto;
     z-index: 999;
 }
+@media screen and (min-width: 1000px) {
+    #menu-hamburg{
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 40%;
+        background-color: rgba(173, 216, 230, 0.194);
+        transition: 1s;
+        overflow-y:auto;
+        z-index: 999;
+    }
+    .painelSpy{
+        background-color: gray;
+        color: white;
+    }
+}
 .painel{
     position: fixed;
     transform: translate(0,-200%);

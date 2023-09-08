@@ -1,4 +1,4 @@
-export default function ScrollSpy(id,idRigth,idLeft,tex,img){
+export default function responsiveSlider(id,idRigth,idLeft,tex,img){
     const d = document,
         $screen = d.querySelector(id),
          text = ` Lorem ipsum dolor, sit amet consectetur adipisçicing elit. Tenetur hic doloremque molestiae enim voluptatem, praesentium consequuntur blanditiis consequatur corrupti quod quisquam vitae dolor at! Dolorum minus et eveniet dolorem ut?`,
