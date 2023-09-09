@@ -6,7 +6,6 @@ export default function scrollSpy(){
         const obeservar = new IntersectionObserver((entries)=>{
             entries.forEach((entry) =>{
                 if(entry.isIntersecting){
-                    console.log(entry.target)
                     menuHamburg.querySelector('#'+ entry.target.id).classList.add('painelSpy');
                 }else{
                     menuHamburg.querySelector('#'+ entry.target.id).classList.remove('painelSpy');

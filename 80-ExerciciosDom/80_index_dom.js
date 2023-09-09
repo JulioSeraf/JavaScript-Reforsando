@@ -15,6 +15,7 @@ import filtro from "./96_DOM_FiltroDeBusqueda.js";
 import sorteoDigital from "./97_DOM_SorteoDigital.js";
 import responsiveSlider from "./98_DOM_ResponsiveSlider.js";
 import scrollSpy from "./99_DOM_ScrollSpy.js";
+import videoInte from "./100_DOM_VideoInteligente.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -51,7 +52,7 @@ export function selectEjercicio(){
     function scrollMove(x){
         let conttTop = 0;
         scroll({
-            top: conttTop + 615*x,
+            top: conttTop + 635*x,
             left: 0,
             behavior: "smooth",
             })
@@ -86,3 +87,4 @@ export function selectEjercicio(){
     sorteoDigital('#sortear', '.premio');
     responsiveSlider('.screen','#right',"#left",'.text','.imagen');
     scrollSpy();
+    videoInte(`#video-inteligente`)
