@@ -2,17 +2,9 @@
 export default function videoInte(vid){
     const $video = document.querySelector(vid);
     function cb(entries){
-        console.log(entries)
-        entries.forEach(entry => {
-            if(entry.isIntersecting){
-                console.log($video)
-                $video.src += '?autoplay=0'
-            }else{
-                $video.pause;
-            };
-        });
-    }
+        entries.forEach(entry => (entry.isIntersecting)? $video.play(): $video.pause());
+    };
     const observe = new IntersectionObserver(cb,{threshold: 0.5});
-
-    observe.observe($video)
-}
+    observe.observe($video);
+    document.addEventListener('visibilitychange',()=>(document.hidden)?$video.pause():$video.play()); 
+};
