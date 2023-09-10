@@ -363,4 +363,5 @@ section h1{
 /* Video inteligente */
 #section12 video{
     margin: auto;
+    box-shadow: 10px 10px 10px black;
 }

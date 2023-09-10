@@ -51,11 +51,20 @@ export function selectEjercicio(){
     let buttons = painel.querySelectorAll('button');
     function scrollMove(x){
         let conttTop = 0;
+        if(x < 10){
         scroll({
             top: conttTop + 635*x,
             left: 0,
             behavior: "smooth",
             })
+        }else{
+            scroll({
+                top: conttTop + 700*x,
+                left: 0,
+                behavior: "smooth",
+                })
+        }
+
     }
     document.addEventListener('click',(e)=>{
         for(let i = 1; i <= buttons.length; i++){
