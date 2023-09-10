@@ -365,3 +365,30 @@ section h1{
     margin: auto;
     box-shadow: 10px 10px 10px black;
 }
+/* Formulario envio */
+#section13 form{
+    margin: auto;
+    width: fit-content;
+    max-width:500px;
+    text-align: left;
+}
+#section13 form input{
+    display: block;
+    margin: 5px auto;
+    width:100%;
+}
+#section13 textarea{
+    text-align: left;
+    margin: 5px;
+    padding: 5px;
+    width: 450px;
+    max-width: 450px;
+    height: 200px;
+    max-height:200px;
+}
+#section13 form input[type="submit"]{
+    padding: 10px;
+    color: gray;
+    color: black;
+}
+
