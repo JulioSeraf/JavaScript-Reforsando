@@ -1,19 +1,19 @@
 //usar Api intersectionObrever y visibilityChange
-export default function videoInte(vid){
-    const $video = document.querySelector(vid);
+export default function videoInte(){
+    const $video = document.querySelectorAll('video[data-smart-video]');
     function cb(entries){
         entries.forEach(entry => {
-            (entry.isIntersecting)?$video.play(): $video.pause();
+            (entry.isIntersecting)? entry.target.play():  entry.target.pause();;
             document.addEventListener('visibilitychange',()=>{
                 if(document.hidden){
-                    $video.pause();
+                    entry.target.pause();
                 }else{
-                    (entry.isIntersecting)?$video.play(): $video.pause();
+                    (entry.isIntersecting)?entry.target.play(): entry.target.pause();
                 };
             });
         });
     };
     
-    const observe = new IntersectionObserver(cb,{threshold: 0.5});
-    observe.observe($video);
+    const observa = new IntersectionObserver(cb,{threshold: 0.5});
+    $video.forEach(el => observa.observe(el));
 }
