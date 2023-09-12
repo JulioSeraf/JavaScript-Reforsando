@@ -16,6 +16,7 @@ import sorteoDigital from "./97_DOM_SorteoDigital.js";
 import responsiveSlider from "./98_DOM_ResponsiveSlider.js";
 import scrollSpy from "./99_DOM_ScrollSpy.js";
 import videoInte from "./100_DOM_VideoInteligente.js";
+import validacioForm from "./101_DOM_Validación_Formulario.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -87,4 +88,6 @@ export function selectEjercicio(){
     sorteoDigital('#sortear', '.premio');
     responsiveSlider('.screen','#right',"#left",'.text','.imagen');
     scrollSpy();
-    videoInte(`#video-inteligente`)
+    videoInte(`#video-inteligente`);
+    validacioForm('#formulario')
+    $ball.insertAdjacentElement

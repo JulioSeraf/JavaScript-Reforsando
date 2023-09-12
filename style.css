@@ -23,7 +23,7 @@ header{
     color: white;
     
 }
-section{
+main > section{
    min-height: 100vh;
 }
 section h1{
@@ -370,11 +370,12 @@ section h1{
     margin: auto;
     width: fit-content;
     max-width:500px;
-    text-align: left;
+    
 }
 #section13 form input{
+    margin: 5px 0px;
+    text-align: left;
     display: block;
-    margin: 5px auto;
     width:100%;
 }
 #section13 textarea{
@@ -387,8 +388,21 @@ section h1{
     max-height:200px;
 }
 #section13 form input[type="submit"]{
-    padding: 10px;
+    padding: 10px 0;
     color: gray;
     color: black;
+}
+#section13 form > section {
+    position: relative;
+}
+.invalido{
+    position:absolute;
+    bottom: -40%;
+    text-align: center;
+    padding: 0 2px;
+    background-color: red;
+    color: black;
+    width: 100%;
+    z-index: 10;
 }
 

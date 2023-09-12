@@ -23,8 +23,9 @@
         <button id="section10" class="button-inMenu">Sorteo Digital</button>
         <button id="section11" class="button-inMenu">ScrollSpy</button>
         <button id="section12" class="button-inMenu">Video inteligente</button>
-        <button id="section13" class="button-inMenu">exercicie 10</button>
+        <button id="section13" class="button-inMenu">Envio de Formulario (Validación)</button>
         <button id="section14" class="button-inMenu">exercicie 10</button>
+        <button id="section15" class="button-inMenu">exercicie 10</button>
     </nav>
     <main>
         <section id="section1">
@@ -144,16 +145,22 @@
         </section>
         <section  id="section13">
             <h1>Envio de Formulario (Validación)</h1>
-            <h2>Envianos tus comentarios</h2>
-            <form>
-                <label for="name">Nombre:</label>
-                <input id="name" name="iname" type="text" required>
-                <label for="email">Email:</label>
-                <input id="email" name="iemail" type="email">
-                <label for="about">Assunto a tratar:</label>
-                <input id="about"  name="iabout" type="text">
+            <form id="formulario">
+                <legend>Envianos tu Comentarios</legend>
+                <section>
+                    <label for="name">Nombre:</label>
+                    <input id="name" name="iname" type="text" >
+                </section>
+                <section>
+                    <label for="email">Email:</label>
+                    <input id="email" name="iemail" type="email">
+                </section>
+                <section>
+                    <label for="about">Assunto a tratar:</label>
+                    <input id="about"  name="iabout" type="text">
+                </section>
                 <textarea name="iareText" id="areaText" cols="30" rows="10" maxlength="250" placeholder="texto..."></textarea>
-                <input id="enviar" value="Enviar" type="submit">
+                <input name="ienviar" id="enviar" value="Enviar" type="submit">
             </form>
         </section>
         <section  id="section14"></section>

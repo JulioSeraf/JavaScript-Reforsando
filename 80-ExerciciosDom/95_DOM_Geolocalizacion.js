@@ -2,15 +2,13 @@ export default function geolocalizar(div){
     const d = document,
     n = navigator;
     d.addEventListener('DOMContentLoaded',()=>{
-        const $div = d.getElementById(div)
-        console.log($div)
+        const $div = d.getElementById(div);
         const options= {
             enableHighAccuracy:true,
             timeout: 5000,
             maximumAge:0
         }
         const success = (position)=>{
-            console.log(position)
             const cord = position.coords;
            $div.innerHTML = `
            <ul>
