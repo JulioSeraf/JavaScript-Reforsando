@@ -11,7 +11,24 @@
         <h1>Ejercicios del DOM</h1>
     </header>
     <nav id="menu-hamburg" class="painel">
-        <button id="section1" class="button-inMenu">Reloj Digital y Alarma Sonora</button>
+        <a href="#section1" class="button-inMenu">Reloj Digital y Alarma Sonora</a>
+        <a href="#section2" class="button-inMenu">Eventos de Teclado</a>
+        <a href="#section3" class="button-inMenu">CountDown</a>
+        <a href="#section4" class="button-inMenu">Responsive con JavaScript</a>
+        <a href="#section5" class="button-inMenu">Responsive Teste</a>
+        <a href="#section6" class="button-inMenu">User Agent</a>
+        <a href="#section7" class="button-inMenu">Detección estao red / Detección de Dispositivos media</a>
+        <a href="#section8" class="button-inMenu">Geolocalización</a>
+        <a href="#section9" class="button-inMenu">Filtro de Busqueda</a>
+        <a href="#section10" class="button-inMenu">Sorteo Digital</a>
+        <a href="#section11" class="button-inMenu">ScrollSpy</a>
+        <a href="#section12" class="button-inMenu">Video inteligente</a>
+        <a href="#section13" class="button-inMenu">Envio de Formulario (Validación)</a>
+        <a href="#section14" class="button-inMenu">next</a>
+        <a href="#section15" class="button-inMenu">next</a>
+
+        <!-- Para scrol con Java -->
+        <!-- <button id="section1" class="button-inMenu">Reloj Digital y Alarma Sonora</button>
         <button id="section2" class="button-inMenu">Eventos de Teclado</button>
         <button id="section3" class="button-inMenu">CountDown</button>
         <button id="section4" class="button-inMenu">Responsive con JavaScript</button>
@@ -25,7 +42,7 @@
         <button id="section12" class="button-inMenu">Video inteligente</button>
         <button id="section13" class="button-inMenu">Envio de Formulario (Validación)</button>
         <button id="section14" class="button-inMenu">exercicie 10</button>
-        <button id="section15" class="button-inMenu">exercicie 10</button>
+        <button id="section15" class="button-inMenu">exercicie 10</button> -->
     </nav>
     <main>
         <section id="section1">
@@ -147,20 +164,20 @@
             <h1>Envio de Formulario (Validación)</h1>
             <form id="formulario">
                 <legend>Envianos tu Comentarios</legend>
-                <section>
-                    <label for="name">Nombre:</label>
-                    <input id="name" name="iname" type="text" >
-                </section>
-                <section>
-                    <label for="email">Email:</label>
-                    <input id="email" name="iemail" type="email">
-                </section>
-                <section>
-                    <label for="about">Assunto a tratar:</label>
-                    <input id="about"  name="iabout" type="text">
-                </section>
-                <textarea name="iareText" id="areaText" cols="30" rows="10" maxlength="250" placeholder="texto..."></textarea>
+                <label for="name">Nombre:</label>
+                <input type="text" name="iname"  title="El Nombre solo acepta letras y espacions en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+                <label for="email">Email:</label>
+                <input type="email" name="iemail"  title="use un email vaildo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+                <label for="about">Assunto a tratar:</label>
+                <input type="text" name="iabout" title="El Assuto es requerido" required>
+                <textarea name="iareText" id="areaText" cols="50" rows="10" title="Tu Comentarios no deve exeder los 255 caracteres" placeholder="texto..." required></textarea>
                 <input name="ienviar" id="enviar" value="Enviar" type="submit">
+                <div class="contact-form-load none">
+                    <img src="img/circles.svg" alt="load">
+                </div>
+                <div class="contact-form-respo none">
+                    <p>Los datos han sidos enviados</p>
+                </div>
             </form>
         </section>
         <section  id="section14"></section>

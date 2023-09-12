@@ -16,7 +16,7 @@ import sorteoDigital from "./97_DOM_SorteoDigital.js";
 import responsiveSlider from "./98_DOM_ResponsiveSlider.js";
 import scrollSpy from "./99_DOM_ScrollSpy.js";
 import videoInte from "./100_DOM_VideoInteligente.js";
-import validacioForm from "./101_DOM_Validación_Formulario.js";
+// import validacioForm from "./101_DOM_Validación_Formulario.js";
 // reloj
 const reloj = document.querySelector('.reloj'),
 relojOn = document.querySelector('#relojOn'),
@@ -46,29 +46,29 @@ linksArray = [
    "<a href ='https://www.google.com/maps/place/Sevilla/@37.3750035,-6.2504149,11z/data=!3m1!4b1!4m15!1m8!3m7!1s0xc42e3783261bc8b:0xa6ec2c940768a3ec!2zRXNwYcOxYQ!3b1!8m2!3d40.463667!4d-3.74922!16zL20vMDZta2o!3m5!1s0xd126c1114be6291:0x34f018621cfe5648!8m2!3d37.3890924!4d-5.9844589!16zL20vMDlmM2M?hl=es&entry=ttu' target='_blank'> Ver Mapa <a/>"
 ];
 
-
-export function selectEjercicio(){
-    let painel = document.querySelector('.painel');
-    let buttons = painel.querySelectorAll('button');
-    function scrollMove(x){
-        let conttTop = 0;
-        scroll({
-            top: conttTop + 635*x,
-            left: 0,
-            behavior: "smooth",
-            })
-        }
-    document.addEventListener('click',(e)=>{
-        for(let i = 1; i <= buttons.length; i++){
-            switch(e.target.id){
-                case `section${i}`:scrollMove(i-1)
-                break;
-            }
-        }
-    });
-};
+// SCROLL DE BUTTON
+// export function selectEjercicio(){
+//     let painel = document.querySelector('.painel');
+//     let buttons = painel.querySelectorAll('button');
+//     function scrollMove(x){
+//         let conttTop = 0;
+//         scroll({
+//             top: conttTop + 635*x,
+//             left: 0,
+//             behavior: "smooth",
+//             })
+//         }
+//     document.addEventListener('click',(e)=>{
+//         for(let i = 1; i <= buttons.length; i++){
+//             switch(e.target.id){
+//                 case `section${i}`:scrollMove(i-1)
+//                 break;
+//             }
+//         }
+//     });
+// };
 //Llamadas de functione ============
-    selectEjercicio();
+    // selectEjercicio();
     relojDigital(relojOn,relojOff,reloj)
     alarme(alarmeOn,alarmeOff,som);
     shortcuts();
@@ -89,5 +89,5 @@ export function selectEjercicio(){
     responsiveSlider('.screen','#right',"#left",'.text','.imagen');
     scrollSpy();
     videoInte(`#video-inteligente`);
-    validacioForm('#formulario')
-    $ball.insertAdjacentElement
+    // validacioForm('#formulario')
+    // $ball.insertAdjacentElement
