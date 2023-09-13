@@ -31,7 +31,7 @@ export default function validacioForm(form){
         });
 
         d.addEventListener('submit',(e)=>{
-            e.preventDefault();
+            // e.preventDefault();
             const $load = d.querySelector('.contact-form-load'),
                 $resposte = d.querySelector('.contact-form-respo');
             $load.classList.remove('none');

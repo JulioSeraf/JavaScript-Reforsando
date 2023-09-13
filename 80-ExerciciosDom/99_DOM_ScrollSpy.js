@@ -2,13 +2,16 @@ export default function scrollSpy(){
     const d = document;
     d.addEventListener('DOMContentLoaded',()=>{
         const viewSections = d.querySelectorAll('main section'),
-            menuHamburg = d.querySelector('#menu-hamburg');
+            menuHamburg = d.querySelectorAll('#menu-hamburg a');
+            console.log(menuHamburg)
         const obeservar = new IntersectionObserver((entries)=>{
             entries.forEach((entry) =>{
                 if(entry.isIntersecting){
-                    menuHamburg.querySelector('#'+ entry.target.id).classList.add('painelSpy');
+                    // viewSections.forEach((el, index) => )
+                    // menuHamburg.querySelector('#'+ entry.target.id).classList.add('painelSpy');
                 }else{
-                    menuHamburg.querySelector('#'+ entry.target.id).classList.remove('painelSpy');
+                    viewSections.forEach((el, index) => menuHamburg[index].classList.remove('painelSpy'))
+                    // menuHamburg.querySelector('#'+ entry.target.id).classList.remove('painelSpy');
                 };
             });
             

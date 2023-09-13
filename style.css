@@ -439,3 +439,16 @@ form [required]:invalid{
         opacity: 1;
     }
 }
+
+/* Narrador */
+
+#section14 div{
+    width: fit-content;
+    margin: auto;
+    text-align: left;
+}
+#section14 div select{
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+}
