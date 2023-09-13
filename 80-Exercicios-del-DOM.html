@@ -170,9 +170,9 @@
                 <input type="email" name="iemail"  title="use un email vaildo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                 <label for="about">Assunto a tratar:</label>
                 <input type="text" name="iabout" title="El Assuto es requerido" required>
-                <textarea name="iareText" id="areaText" cols="50" rows="10" title="Tu Comentarios no deve exeder los 255 caracteres" placeholder="texto..." required></textarea>
+                <textarea name="iareText" id="areaText" cols="50" rows="10" title="Tu Comentarios no deve exeder los 255 caracteres" placeholder="texto..." required data-pattern="^.{1,255}$" ></textarea>
                 <input name="ienviar" id="enviar" value="Enviar" type="submit">
-                <div class="contact-form-load none">
+                <div class="contact-form-load none ">
                     <img src="img/circles.svg" alt="load">
                 </div>
                 <div class="contact-form-respo none">
