@@ -29,4 +29,19 @@ export default function validacioForm(form){
                 };
             };
         });
+
+        d.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const $load = d.querySelector('.contact-form-load'),
+                $resposte = d.querySelector('.contact-form-respo');
+            $load.classList.remove('none');
+            setTimeout(()=>{
+                $load.classList.add('none');
+                $resposte.classList.remove('none');
+                $form.reset()
+                setTimeout(()=>{
+                    $resposte.classList.add('none');
+                },3000)
+            },3000)
+        })
 };

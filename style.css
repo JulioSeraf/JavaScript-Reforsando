@@ -394,6 +394,11 @@ form legend,.contact-form-respo{
     font-weight: bolder;
     font-size: 1.3em;
 }
+.contact-form-load{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 form > input[type="submit"]{
     cursor: pointer;
