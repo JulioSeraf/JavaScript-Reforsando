@@ -348,7 +348,7 @@ section h1{
         text-align: right;
     }
     .painelSpy{
-     background-color: gray;
+      background-color: rgba(85, 127, 234, 0.895) !important;
         color: white;
     } 
     #button-hamburg{
