@@ -130,3 +130,22 @@
     .finally(console.log('Eso se executara idependete del resultado de recebido de axios'));
 
 })();
+                                        //AXIOS con Sync-Await
+(()=>{
+    const $axiosAsync = document.getElementById('axios-async'),
+    $fragment = document.createDocumentFragment();
+    async function getDatos(){
+        try{
+           let datosAxios = await axios.get("https://jsonplaceholder.typicode.com/users");
+           let json = await datosAxios.data;
+           json.forEach(obj => {
+            let $li = document.createElement('li');
+            $li.innerHTML =  `Nombre: ${obj.name}--- Email: ${obj.email}--- Phone: ${obj.phone}`;
+            $fragment.appendChild($li);
+        });
+        $axiosAsync.appendChild($fragment);
+        }catch(err) {`Error: ${err.response.status} (${err.response.statusText || 'Arquivo no identificado'})`}
+        finally{console.log('Eso se executara idependete del resultado de recebido de axios')};
+    }
+    getDatos();
+})();
