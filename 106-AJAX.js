@@ -1,3 +1,4 @@
+                                                        //XMLHttpRequest
 (()=>{
     //Passo numero uno la estancia 
 
@@ -53,7 +54,8 @@
     xhr.send();
 })();
 
-//Fetch:
+                                                        //Fetch:
+
     // Trabajar con fetch para hacer peticiones en mais sencillo ya que no tenemos que hacer ninguna estancia de ajax como con XMLHttpResquest 
 (()=>{
     const $fetch = document.getElementById('fetch'),
@@ -77,5 +79,34 @@
     })
     .catch(err => $fetch.innerHTML = `Error: ${err.status} (${err.statusText || 'Arquivo no identificado'})`) // el catch para cojer el erro el mostrarlo
     .finally(()=> console.log('Se ejecuta idenpendete si es un error o no')) // y finally para codigo sempre ejecutable
+
+})();
+                                            //API Fetch + Async-Await
+(()=>{
+    const $fetchAsync = document.getElementById('fetch-async'),
+    $fragment = document.createDocumentFragment();
+    
+    async function peticion(){
+        try{
+            // Com async function podemos hacer uso del await, para esperar la peticion , assin no tenemos que criar un then() solo para converter el arquivo lo podemos hacer todo el el try{};
+            let res = await fetch("https://jsonplaceholder.typicode.com/uses"),
+            json = await res.json();
+            //pero no podemos manipular el error para inviar la resposta para el catch  desde el AWait, para eso criamos un return pro catch com throw 
+            if(!res.ok){
+                // throw new Error('El objeto error solo acepta cadenas de texto')
+                throw {status: res.status, statusText: res.statusText}
+            }
+            json.forEach(obj => {
+                let $li = document.createElement('li');
+                $li.innerHTML =  `Nombre: ${obj.name}--- Email: ${obj.email}--- Phone: ${obj.phone}`;
+                $fragment.appendChild($li);
+            });
+            $fetchAsync.appendChild($fragment);
+        }catch(err){
+            $fetchAsync.innerHTML =  `Error: ${err.status} (${err.statusText || 'Arquivo no identificado'})`
+        }finally{}
+
+    };
+     peticion();
 
 })();
