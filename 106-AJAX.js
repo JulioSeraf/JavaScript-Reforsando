@@ -69,7 +69,7 @@
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(res => res.ok?res.json(): Promise.reject(res)) // el primero then es el que restiona el manejodel error y trasfomar el arquivo
     .then((json) =>{ // el Segundo es donde se cria el codigo que manipula el arquivo trasformado 
-        console.log(json)
+        // console.log(json)
         json.forEach(obj => {
             let $li = document.createElement('li');
             $li.innerHTML =  `Nombre: ${obj.name}--- Email: ${obj.email}--- Phone: ${obj.phone}`;
@@ -89,7 +89,7 @@
     async function peticion(){
         try{
             // Com async function podemos hacer uso del await, para esperar la peticion , assin no tenemos que criar un then() solo para converter el arquivo lo podemos hacer todo el el try{};
-            let res = await fetch("https://jsonplaceholder.typicode.com/uses"),
+            let res = await fetch("https://jsonplaceholder.typicode.com/users"),
             json = await res.json();
             //pero no podemos manipular el error para inviar la resposta para el catch  desde el AWait, para eso criamos un return pro catch com throw 
             if(!res.ok){
@@ -108,5 +108,25 @@
 
     };
      peticion();
+
+})();
+                                            //AXIOS
+// AXIOS es una API baseada en Promises para trabajar con peticiónes asincronas, com el axios no tenemos que hacer la conversion de json , ya que la API AXIO nos devuelve la respuesta de la peticion ja parseado
+(()=>{
+    const $axios = document.getElementById('axios'),
+    $fragment = document.createDocumentFragment();
+
+    axios.get("https://jsonplaceholder.typicode.com/users")
+    .then(res => {
+        let json = res.data;
+        json.forEach(obj => {
+            let $li = document.createElement('li');
+            $li.innerHTML =  `Nombre: ${obj.name}--- Email: ${obj.email}--- Phone: ${obj.phone}`;
+            $fragment.appendChild($li);
+        });
+        $axios.appendChild($fragment);
+    })
+    .catch(err => $axios.innerHTML = `Error: ${err.response.status} (${err.response.statusText || 'Arquivo no identificado'})`)
+    .finally(console.log('Eso se executara idependete del resultado de recebido de axios'));
 
 })();
