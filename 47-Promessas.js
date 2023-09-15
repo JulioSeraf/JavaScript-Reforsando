@@ -1,4 +1,4 @@
-//Las Promessas(la podemos ver como un if esle) teine dos recursos principa el resolve y el reject, se la promesas de comple (por ejemplo un petición a una api) entoce se ejecuta el resolve , si no, se sale un error se ejecuta el reject. 
+//Las Promessas(la podemos ver como un if esle) teine dos recursos principa el resolve y el reject, se la promesas se comple (por ejemplo un petición a una api) entoce se ejecuta el resolve , si no, se sale un error se ejecuta el reject. 
 
 
 // Como ejemplo vamos usar el exercicio del callback 
@@ -26,4 +26,4 @@ return cuadradoPromise("Juio");
 }).then( obj => {console.log(`El valor de ${obj.value} es ${obj.result}`);
 console.log("FIM DE LA PROMESA")
 })
-.catch(err => console.error(`Error: ${err}`)); // el CATCH recorre el error de qualquer promesa criada. Essa es la mejora de la promesa sobre le callback.
+.catch(err => console.error(`Error: ${err}`)); // el CATCH recorre el error de qualquer promesa criada. Essa es la mejora de la promesa sobre el callback.

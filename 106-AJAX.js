@@ -52,3 +52,30 @@
 
     xhr.send();
 })();
+
+//Fetch:
+    // Trabajar con fetch para hacer peticiones en mais sencillo ya que no tenemos que hacer ninguna estancia de ajax como con XMLHttpResquest 
+(()=>{
+    const $fetch = document.getElementById('fetch'),
+    $fragment = document.createDocumentFragment();
+
+   // Para trabajar con fetch invocamos su metodo el primero parametro es el recurso a cual va hacer referencia( neste caso la url del mismo exercio de XMLHttpResques), como segundo parametro recibe un objeto al cual assignamos las opciones que ya veremos mais adelante, una como ejemplo seria el metodo, pero como su metodo por defecto es GET no lo assignamos
+
+   // EL metodo fetch trabaja com promessa, por esso trabajamos com los resultado com el metodo then(para respuestas positivas) y catch(para manipular los errores) y el finally(para respuesta idenpendente si es positivo o negatico => sempre se ejecutara)
+
+       //el fetch teine el medoto json() para trabajar con aquivos json, el text() para trabajar con arquivos html o xml, el blob para img de text(formato dataury)
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then(res => res.ok?res.json(): Promise.reject(res)) // el primero then es el que restiona el manejodel error y trasfomar el arquivo
+    .then((json) =>{ // el Segundo es donde se cria el codigo que manipula el arquivo trasformado 
+        console.log(json)
+        json.forEach(obj => {
+            let $li = document.createElement('li');
+            $li.innerHTML =  `Nombre: ${obj.name}--- Email: ${obj.email}--- Phone: ${obj.phone}`;
+            $fragment.appendChild($li);
+        });
+        $fetch.appendChild($fragment);
+    })
+    .catch(err => $fetch.innerHTML = `Error: ${err.status} (${err.statusText || 'Arquivo no identificado'})`) // el catch para cojer el erro el mostrarlo
+    .finally(()=> console.log('Se ejecuta idenpendete si es un error o no')) // y finally para codigo sempre ejecutable
+
+})();
