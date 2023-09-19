@@ -45,7 +45,8 @@
 // /api-libros/v0/libros: identifica los recursos libros
 // /api-libros/v0/editoriales: identifica los recursos editoriales
 // /api-libros/v0/editoriales/{id-editorial}/libros: identifica los libros de una editorial
-// HTTP Status
+
+                                                   // HTTP Status
 // Son aquellos estatus de respuesta propios del protocolo HTTP que fueron tomados para informar sobre el resultado de la operación solicitada. Los más comunes en API REST son:
 
 // 200 - OK
