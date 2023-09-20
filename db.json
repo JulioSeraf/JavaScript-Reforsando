@@ -1,68 +1,66 @@
 {
-    "imperadores":[
-        {   
-            "id":1,
-            "nombre": "KAIDO",
-            "fruta": "Zoan Mitica",
-            "haki": "big three"
-        },{
-            "id":2,
-            "nombre": "Big MOM",
-            "fruta": "Paramicia",
-            "haki": "big three"
-
-        },{
-            "id":3,
-            "nombre": "SHANS",
-            "fruta": "NO HAVE",
-            "haki": "big three"
-        },{
-            "id":4,
-            "nombre": "Barba Negra",
-            "fruta": "Logia",
-            "haki": "big three maybe"
-        },
-        {
-            "id":5,
-            "nombre": "Barba Branca",
-            "fruta": "Paramicia",
-            "haki": "big three old"
-        },
-        {
-            "id":6,
-            "nombre": "Luffy",
-            "fruta": "Zoan Mitica",
-            "haki": "big three"
-        }
-    ],
-    "Almirantes":[
-        {
-         "id":1,
-         "nombre":"Akainu",
-         "fruta": "logia - Lava",
-         "haki":"no confirm"
-        },{
-            "id":2,
-            "nombre":"Aokij",
-            "fruta": "logia - gelo",
-            "haki":"no confirm"
-        },{
-            "id":3,
-            "nombre":"Kizaru",
-            "fruta": "logia - Luz",
-            "haki":"no confirm"
-        },{
-            "id":4,
-            "nombre":"fujitora",
-            "fruta": "logia - gravida",
-            "haki":"no confirm"
-        },
-        {
-            "id":5,
-            "nombre":"Toro verde",
-            "fruta": "logia - planta",
-            "haki":"no confirm"
-        }
-
-    ]
+  "yonks": [
+    {
+      "id": 1,
+      "name": "KAIDO",
+      "fruta": "zoon mitica-peixe Dragon",
+      "Haki": "all"
+    },
+    {
+      "id": 2,
+      "name": "Big Mon",
+      "fruta": "paramicia- alma",
+      "Haki": "all"
+    },
+    {
+      "id": 3,
+      "name": "Barba Branca",
+      "fruta": "Paramicia-terremoto",
+      "Haki": "all"
+    },
+    {
+      "id": 4,
+      "name": "Shanks",
+      "fruta": "no-have",
+      "Haki": "all"
+    },
+    {
+      "id": 5,
+      "name": "Barba Negra",
+      "fruta": "Logia-oscuridao",
+      "Haki": "all"
+    },
+    {
+      "id": 6,
+      "name": "Luffy",
+      "fruta": "zoon mitica-Nica Deus do sol",
+      "Haki": "all"
+    },
+    {
+      "name": "king",
+      "Haki": "all",
+      "fruta": "Zoo ancestral: pitarodatele",
+      "id": 7
+    }
+  ],
+  "almirantes": [
+    {
+      "id": 1,
+      "name": "Akainu",
+      "fruta": "Logia -Lava",
+      "Haki": "all"
+    },
+    {
+      "id": 2,
+      "name": "Akoiji",
+      "fruta": "Logia- Gelo",
+      "Haki": "all"
+    },
+    {
+      "id": 3,
+      "name": "Kisaru",
+      "fruta": "Logia-Luz",
+      "Haki": "all"
+    }
+  ]
 }
