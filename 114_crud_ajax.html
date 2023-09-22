@@ -15,6 +15,8 @@
                 <br>
                 <input type="text" name="fruta" placeholder="Fruta" required>
                 <br>
+                <input type="text" name="haki" placeholder="haki" required>
+                <br>
                 <input type="submit" value="Enviar">
                 <input type="hidden" name="id">
             </form>
@@ -53,7 +55,8 @@
             $title = d.querySelector(".crud-title"),
             $template = d.getElementById("crud-template").content,
             $fragment = d.createDocumentFragment(),
-             $xml = new XMLHttpRequest();
+             $xml = new XMLHttpRequest(),
+             $edit = d.querySelectorAll('edit');
 
         const ajax = (options)=>{
             let  {meth,url,success,error,data} = options;
@@ -76,6 +79,12 @@
                 $template.querySelector('.name').textContent = el.name;
                 $template.querySelector('.fruta').textContent = el.fruta;
                 $template.querySelector('.haki').textContent = el.Haki;
+                $template.querySelector('.edit').dataset.id = el.id;
+                $template.querySelector('.edit').dataset.name = el.name;
+                $template.querySelector('.edit').dataset.fruta = el.fruta;
+                $template.querySelector('.edit').dataset.haki = el.Haki;
+                $template.querySelector('.delete').dataset.id = el.id;
+
                 let $clone = d.importNode($template,true);
                 $fragment.appendChild($clone);
             });
@@ -88,7 +97,49 @@
             error: (err)=>{$table.insertAdjacentHTML('afterend',`<p><strong>${err}</strong></p>`)},
             data: null
         })
-        d.addEventListener("DOMContentLoaded",getAllYonks)
+        d.addEventListener("DOMContentLoaded",getAllYonks);
+        d.addEventListener('submit',(e)=>{
+            if(e.target === $form){
+                e.preventDefault()
+               if(!e.target.id.value){
+                //insert = POST
+                ajax({
+                    meth:"POST",
+                    url:"http://localhost:5554/yonks",
+                    success: (res)=>location.reload(),
+                    error: ()=> $form.insertAdjacentHTML("afterend",`<p><strong>${err}</strong></p>`),
+                    data: {
+                        name: e.target.name.value,
+                        fruta: e.target.fruta.value,
+                        Haki: e.target.haki.value
+                    }
+                });
+               }else{
+                //UPDATE = PUT
+               }
+            };
+        });
+        d.addEventListener('click',(e)=>{
+            if(e.target.matches('.edit')){
+                $form.name.value = e.target.dataset.name;
+                $form.fruta.value = e.target.dataset.fruta;
+                $form.haki.value = e.target.dataset.haki;
+                $form.id.value = e.target.dataset.id;
+            };
+            if(e.target.matches('.delete')){
+                let res = prompt('Seguro que queires eliminar este Personaje:')
+                if(res){
+        
+                }else{return}
+            }
+        })
+        // $edit.forEach((but)=>{
+        //     but.addEventListener('click',(e)=>{
+        //         if()
+                    
+        //     })
+        // })
+        
     </script>
 </body>
 </html>
