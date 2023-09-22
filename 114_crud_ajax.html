@@ -27,25 +27,19 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Frutas</th>
+                    <th scope="col">Haki</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Kaido</th>
-                    <td>Zoo Mitica: Peixe Dragon</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </section>
     <template id="crud-template">
         <tr>
-            <th class="name"></th>
+            <th scope="row" class="name"></th>
             <td class="fruta"></td>
+            <td class="haki"></td>
             <td>
                 <button class="edit">Editar</button>
                 <button class="delete">Eliminar</button>
@@ -61,26 +55,40 @@
             $fragment = d.createDocumentFragment(),
              $xml = new XMLHttpRequest();
 
-        console.log($xml)
-       const ajax =(options)=>{
-        let [url,meth,success,error,data] = options;
-            $xml.addEventListener('readystatechange',(e)=>{
-                if($xml.readyState !== 4) return;
+        const ajax = (options)=>{
+            let  {meth,url,success,error,data} = options;
+            $xml.addEventListener("readystatechange",()=>{
+                if($xml.readyState != 4)return;
                 if($xml.status >= 200 && $xml.status < 300){
-                    let json = JSON.parse($xml.responseText)
-                    console.log(json)
-
-
+                    let json = JSON.parse($xml.responseText);
+                    success(json);
                 }else{
-                    let erroMsg = $xml.statusText || "detectado";
-                    alert(`Error: ${$xml.status} - ${erroMsg}`)
+                    let errMeng = $xml.statusText || "Detectado";
+                    error(`Error:${$xml.status} - ${errMeng}`);
                 }
-            })
-            $xml.open(meth||"GET",url)
+            });
+            $xml.open(meth||"GET",url);
             $xml.setRequestHeader("content-type","application/json;charset-utf-8")
-            $xml.send(JSON.stringify(data))
+            $xml.send(JSON.stringify(data));
         }
-        console.log($xml)
+        const getAllYonks = (datos)=>{
+            datos.forEach(el => {
+                $template.querySelector('.name').textContent = el.name;
+                $template.querySelector('.fruta').textContent = el.fruta;
+                $template.querySelector('.haki').textContent = el.Haki;
+                let $clone = d.importNode($template,true);
+                $fragment.appendChild($clone);
+            });
+            $table.querySelector('tbody').appendChild($fragment);
+        }
+        ajax({
+            meth: "GET",
+            url: "http://localhost:5554/yonks",
+            success: (res)=>{getAllYonks(res)},
+            error: (err)=>{$table.insertAdjacentHTML('afterend',`<p><strong>${err}</strong></p>`)},
+            data: null
+        })
+        d.addEventListener("DOMContentLoaded",getAllYonks)
     </script>
 </body>
 </html>
