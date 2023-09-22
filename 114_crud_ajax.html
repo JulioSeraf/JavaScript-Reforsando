@@ -16,7 +16,7 @@
                 <input type="text" name="fruta" placeholder="Fruta" required>
                 <br>
                 <input type="submit" value="Enviar">
-                <input type="hidden" name="action">
+                <input type="hidden" name="id">
             </form>
         </article>
     </section>
@@ -58,7 +58,29 @@
             $form = d.querySelector(".crud-form"),
             $title = d.querySelector(".crud-title"),
             $template = d.getElementById("crud-template").content,
-            $fragment = d.createDocumentFragment();
+            $fragment = d.createDocumentFragment(),
+             $xml = new XMLHttpRequest();
+
+        console.log($xml)
+       const ajax =(options)=>{
+        let [url,meth,success,error,data] = options;
+            $xml.addEventListener('readystatechange',(e)=>{
+                if($xml.readyState !== 4) return;
+                if($xml.status >= 200 && $xml.status < 300){
+                    let json = JSON.parse($xml.responseText)
+                    console.log(json)
+
+
+                }else{
+                    let erroMsg = $xml.statusText || "detectado";
+                    alert(`Error: ${$xml.status} - ${erroMsg}`)
+                }
+            })
+            $xml.open(meth||"GET",url)
+            $xml.setRequestHeader("content-type","application/json;charset-utf-8")
+            $xml.send(JSON.stringify(data))
+        }
+        console.log($xml)
     </script>
 </body>
 </html>

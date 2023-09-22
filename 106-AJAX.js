@@ -16,6 +16,8 @@
     
         xhrTest.open("GET","https://jsonplaceholder.typicode.com/users")
 
+        xhrTest.setRequestHeader("content-type","application/json;charset-utf-8")
+
     //Y como ultimo passo , Enviar la peticción, usando el metodo send()
 
         xhrTest.send();    
