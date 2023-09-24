@@ -71,8 +71,9 @@
                 }
             });
             $xml.open(meth||"GET",url);
-            $xml.setRequestHeader("content-type","application/json;charset-utf-8");
+            $xml.setRequestHeader("content-type","application/json;charset=utf-8");
             $xml.send(JSON.stringify(data));
+            console.log(data)
         };
         const getAllYonks =(dato)=>{
             ajax({
@@ -118,12 +119,12 @@
                }else{
                 //UPDATE = PUT
                 ajax({
-                    meth: "PUT",
+                    meth:"PUT",
                     url:"http://localhost:5554/yonks/"+ $form.id.value,
                     success:(res)=>location.reload(),
                     error: (err)=> $form.insertAdjacentHTML("afterend",`<p><strong>${err}</strong></p>`),
                     data:{
-                        name: e.target.name.value,
+                        name: $form.name.value,
                         fruta: e.target.fruta.value,
                         Haki: e.target.haki.value,
                     }
@@ -132,7 +133,7 @@
             };
         });
         d.addEventListener('click',(e)=>{
-            console.log(e.target.name.value)
+            console.log($form.name.value)
             if(e.target.matches('.edit')){
                 $title.textContent = "Editar Yonko"
                 $form.name.value = e.target.dataset.name;
