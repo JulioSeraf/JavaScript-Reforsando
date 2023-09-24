@@ -9,7 +9,7 @@
     <h1>CRUD API REST AJAX</h1>
     <section class="crud">
         <article>
-            <h2 class="crud-title">Editar yonko</h2>
+            <h2 class="crud-title">Adicionar Yonko</h2>
             <form class="crud-form">
                 <input type="text" name="name" placeholder= "Nombre:" required>
                 <br>
@@ -71,11 +71,15 @@
                 }
             });
             $xml.open(meth||"GET",url);
-            $xml.setRequestHeader("content-type","application/json;charset-utf-8")
+            $xml.setRequestHeader("content-type","application/json;charset-utf-8");
             $xml.send(JSON.stringify(data));
-        }
-        const getAllYonks = (datos)=>{
-            datos.forEach(el => {
+        };
+        const getAllYonks =(dato)=>{
+            ajax({
+            meth: "GET",
+            url: "http://localhost:5554/yonks",
+            success: (res)=>{
+                res.forEach((el) => {
                 $template.querySelector('.name').textContent = el.name;
                 $template.querySelector('.fruta').textContent = el.fruta;
                 $template.querySelector('.haki').textContent = el.Haki;
@@ -84,19 +88,16 @@
                 $template.querySelector('.edit').dataset.fruta = el.fruta;
                 $template.querySelector('.edit').dataset.haki = el.Haki;
                 $template.querySelector('.delete').dataset.id = el.id;
-
                 let $clone = d.importNode($template,true);
                 $fragment.appendChild($clone);
             });
             $table.querySelector('tbody').appendChild($fragment);
-        }
-        ajax({
-            meth: "GET",
-            url: "http://localhost:5554/yonks",
-            success: (res)=>{getAllYonks(res)},
+            },
             error: (err)=>{$table.insertAdjacentHTML('afterend',`<p><strong>${err}</strong></p>`)},
             data: null
-        })
+            });
+           
+        };
         d.addEventListener("DOMContentLoaded",getAllYonks);
         d.addEventListener('submit',(e)=>{
             if(e.target === $form){
@@ -107,8 +108,8 @@
                     meth:"POST",
                     url:"http://localhost:5554/yonks",
                     success: (res)=>location.reload(),
-                    error: ()=> $form.insertAdjacentHTML("afterend",`<p><strong>${err}</strong></p>`),
-                    data: {
+                    error: (err)=> $form.insertAdjacentHTML("afterend",`<p><strong>${err}</strong></p>`),
+                    data:{
                         name: e.target.name.value,
                         fruta: e.target.fruta.value,
                         Haki: e.target.haki.value
@@ -116,30 +117,40 @@
                 });
                }else{
                 //UPDATE = PUT
-               }
+                ajax({
+                    meth: "PUT",
+                    url:"http://localhost:5554/yonks/"+ $form.id.value,
+                    success:(res)=>location.reload(),
+                    error: (err)=> $form.insertAdjacentHTML("afterend",`<p><strong>${err}</strong></p>`),
+                    data:{
+                        name: e.target.name.value,
+                        fruta: e.target.fruta.value,
+                        Haki: e.target.haki.value,
+                    }
+                });
+               };
             };
         });
         d.addEventListener('click',(e)=>{
+            console.log(e.target.name.value)
             if(e.target.matches('.edit')){
+                $title.textContent = "Editar Yonko"
                 $form.name.value = e.target.dataset.name;
                 $form.fruta.value = e.target.dataset.fruta;
                 $form.haki.value = e.target.dataset.haki;
                 $form.id.value = e.target.dataset.id;
             };
             if(e.target.matches('.delete')){
-                let res = prompt('Seguro que queires eliminar este Personaje:')
+                console.log(e.target.dataset.id)
+                let res = confirm('Seguro que queires eliminar este Personaje:')
                 if(res){
-        
-                }else{return}
-            }
-        })
-        // $edit.forEach((but)=>{
-        //     but.addEventListener('click',(e)=>{
-        //         if()
-                    
-        //     })
-        // })
-        
+                    ajax({
+                        meth:"DELETE",
+                        url:"http://localhost:5554/yonks/"+ e.target.dataset.id
+                    });
+                };
+            };
+        });
     </script>
 </body>
 </html>

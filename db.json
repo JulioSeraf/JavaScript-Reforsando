@@ -1,10 +1,7 @@
 {
   "yonks": [
     {
-      "id": 1,
-      "name": "KAIDO",
-      "fruta": "zoon mitica-peixe Dragon",
-      "Haki": "all"
+      "id": 1
     },
     {
       "id": 2,
@@ -35,18 +32,6 @@
       "name": "Luffy",
       "fruta": "zoon mitica-Nica Deus do sol",
       "Haki": "all"
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
     }
   ],
   "almirantes": [
