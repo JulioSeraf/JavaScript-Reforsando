@@ -9,7 +9,7 @@
     <h1>CRUD API REST Axios</h1>
     <section class="crud">
         <article>
-            <h2 class="crud-title">Editar yonko</h2>
+            <h2 class="crud-title">Addicionar yonko</h2>
             <form class="crud-form">
                 <input type="text" name="name" placeholder= "Nombre:" required>
                 <br>
@@ -27,18 +27,11 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Frutas</th>
+                    <th scope="col">haki</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Kaido</th>
-                    <td>Zoo Mitica: Peixe Dragon</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </section>
@@ -46,12 +39,14 @@
         <tr>
             <th class="name"></th>
             <td class="fruta"></td>
+            <td class="haki"></td>
             <td>
                 <button class="edit">Editar</button>
                 <button class="delete">Eliminar</button>
             </td>
         </tr>
     </template>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script>
         const d = document,
             $table = d.querySelector(".crud-table"),
@@ -59,6 +54,50 @@
             $title = d.querySelector(".crud-title"),
             $template = d.getElementById("crud-template").content,
             $fragment = d.createDocumentFragment();
+        async function getAll(){
+            try{
+                let axio = await axios.get("http://localhost:5554/yonks"),
+                json = await axio.data;
+                console.log(axio)
+                json.forEach(el => {
+                    $template.querySelector(".name").textContent = el.name;
+                    $template.querySelector(".fruta").textContent = el.fruta;
+                    $template.querySelector(".haki").textContent = el.Haki;
+                    $template.querySelector(".edit").dataset.name = el.name;
+                    $template.querySelector(".edit").dataset.fruta = el.fruta;
+                    $template.querySelector(".edit").dataset.haki = el.Haki;
+                    $template.querySelector(".edit").dataset.id = el.id;
+                    $template.querySelector(".delete").dataset.id = el.id;
+                    $template.querySelector(".delete").dataset.name = el.name;
+                    let $clone = d.importNode($template,true);
+                    $fragment.appendChild($clone);
+                });
+                $table.querySelector('tbody').appendChild($fragment);
+            }catch(err){
+                console.log(err.request.status)
+                $form.insertAdjacentHTML("afterend",`<p> Error <strong>${err.request.status}</strong> - ${err.request.statusText || "Detectado"}`)
+            }
+        }
+        d.addEventListener("DOMContentLoaded",getAll);
+        d.addEventListener("submit", async(e)=>{
+            if(e.target === $form){
+                e.preventDefault();
+            }
+        });
+        d.addEventListener("click", async(e)=>{
+            if(e.target.matches(".edit")){
+
+            }
+            if(e.target.matches(".delete")){
+                console.log(e.target.id)
+                try{
+                    let res = confirm(`Estas seguro que queries eliminar: ${e.target.dataset.name}`);
+                    if(res){ await axios.delete("http://localhost:5554/yonk/"+e.target.dataset.id)};
+                }catch(err){
+                   alert(`Error: ${err.request.status} - ${err.request.statusText || "Detectado"}`);
+                };
+            };
+        });
     </script>
 </body>
 </html>
