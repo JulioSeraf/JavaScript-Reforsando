@@ -9,36 +9,31 @@
     <h1>CRUD API REST Fetch</h1>
     <section class="crud">
         <article>
-            <h2 class="crud-title">Editar yonko</h2>
+            <h2 class="crud-title">Adiccionar Almirantes</h2>
             <form class="crud-form">
                 <input type="text" name="name" placeholder= "Nombre:" required>
                 <br>
                 <input type="text" name="fruta" placeholder="Fruta" required>
                 <br>
+                <input type="text" name="haki" placeholder="haki" required>
+                <br>
                 <input type="submit" value="Enviar">
-                <input type="hidden" name="action">
+                <input type="hidden" name="id">
             </form>
         </article>
     </section>
     <section>
-        <h2>Ver Yonkos</h2>
+        <h2>Ver Almirantes</h2>
         <table class="crud-table">
             <thead>
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Frutas</th>
+                    <th scope="col">haki</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Kaido</th>
-                    <td>Zoo Mitica: Peixe Dragon</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Eliminar</button>
-                    </td>
-                </tr>
             </tbody>
         </table>
     </section>
@@ -46,6 +41,7 @@
         <tr>
             <th class="name"></th>
             <td class="fruta"></td>
+            <td class="haki"></td>
             <td>
                 <button class="edit">Editar</button>
                 <button class="delete">Eliminar</button>
@@ -59,6 +55,67 @@
             $title = d.querySelector(".crud-title"),
             $template = d.getElementById("crud-template").content,
             $fragment = d.createDocumentFragment();
+        d.addEventListener("DOMContentLoaded",(e)=>{
+            const fetchPeticcíon = async ()=>{
+                    try{
+                        let peticion = await fetch("http://localhost:5554/almirantes",{method: "GET"})
+                            json = await peticion.json()
+                            console.log(json)
+                            if(!peticion.ok){
+                                throw{status: peticion.status, statusText: peticion.statusText}
+                            }
+                            json.forEach(el => {
+                                $template.querySelector('.name').textContent = el.name;
+                                $template.querySelector('.fruta').textContent = el.fruta;
+                                $template.querySelector('.haki').textContent = el.Haki;
+                                $template.querySelector('.edit').dataset.name = el.name;
+                                $template.querySelector('.edit').dataset.fruta = el.fruta;
+                                $template.querySelector('.edit').dataset.haki = el.Haki;
+                                $template.querySelector('.edit').dataset.id = el.id;
+                                $template.querySelector('.delete').dataset.id = el.id;
+                                $template.querySelector('.delete').dataset.name = el.name;
+                                let $clone = d.importNode($template,true);
+                                $fragment.appendChild($clone);
+                            });
+                            $table.querySelector('tbody').appendChild($fragment);
+                            $form.addEventListener('submit',(e)=>{
+                                e.preventDefault()
+                                console.log(e)
+                                if(!e.target.id){
+                                    // Crear =  POST 
+                                    fetch("http://localhost:5554/almirante",{method:"POST"})
+                                }else{
+                                    //Update = PUT
+
+                                }
+                            })   
+                            d.addEventListener('click',(e)=>{
+                                if(e.target.matches('.edit')){
+                                    $form.name.value = e.target.dataset.name;
+                                    $form.fruta.value = e.target.dataset.fruta;
+                                    $form.haki.value = e.target.dataset.haki;
+                                    $form.id.value = e.target.dataset.id;
+                                }
+                                if(e.target.matches('.delete')){
+                                    let res = confirm(`Estas Seguro que queires Eliminar a: ${e.target.dataset.name}`)
+                                    if(res){
+                                    let delePeticion = fetch("http://localhost:5554/almirante/"+e.target.dataset.id,{method:"DELETE"})
+                                    console.log(delePeticion)
+                                    // if(!delePeticion.ok){
+                                    //     throw{status: delePeticion.status, statusText: delePeticion.statusText};
+                                    // }
+                                    }   
+                                };
+                            });
+                    }catch(err){
+                       console.warn(`Error ${err.status}- ${err.statusText || 'Detectado'}`)
+                    }
+                };
+                fetchPeticcíon();
+        });
+        
+      
+            
     </script>
 </body>
 </html>
