@@ -121,12 +121,14 @@
                         let crearPeticion =  await fetch("http://localhost:5554/almirantes/"+ e.target.id.value,options);
                         error(crearPeticion);
                     };
+                    location.reload();
                 }catch(err){ $table.insertAdjacentHTML("afterend",`<p>Error ${err.status}- ${err.statusText || 'Detectado'}</p>`)};
             };
         });
         d.addEventListener('click',async (e)=>{
             try{
                 if(e.target.matches('.edit')){
+                    $title.textContent = "Editar Almirante"
                     $form.name.value = e.target.dataset.name;
                     $form.fruta.value = e.target.dataset.fruta;
                     $form.haki.value = e.target.dataset.haki;
