@@ -45,10 +45,10 @@
   ],
   "almirantes": [
     {
-      "id": 1,
       "name": "Akainu",
       "fruta": "Logia -Lava",
-      "Haki": "all"
+      "Haki": "all",
+      "id": 1
     },
     {
       "id": 2,
@@ -61,6 +61,18 @@
       "name": "Kisaru",
       "fruta": "Logia-Luz",
       "Haki": "all"
+    },
+    {
+      "name": "Fujitora",
+      "fruta": "Logia-Gravidad",
+      "Haki": "arm/obs",
+      "id": 4
+    },
+    {
+      "name": "Touro - verde",
+      "fruta": "Logia - Plata",
+      "Haki": "arm-obs",
+      "id": 5
     }
   ]
 }

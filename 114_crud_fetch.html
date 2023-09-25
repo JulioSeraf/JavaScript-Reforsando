@@ -58,6 +58,7 @@
         d.addEventListener("DOMContentLoaded",(e)=>{
             const fetchPeticcíon = async ()=>{
                     try{
+                        //CREATE = GET
                         let peticion = await fetch("http://localhost:5554/almirantes",{method: "GET"})
                             json = await peticion.json()
                             console.log(json)
@@ -78,42 +79,69 @@
                                 $fragment.appendChild($clone);
                             });
                             $table.querySelector('tbody').appendChild($fragment);
-                            $form.addEventListener('submit',(e)=>{
-                                e.preventDefault()
-                                console.log(e)
-                                if(!e.target.id){
-                                    // Crear =  POST 
-                                    fetch("http://localhost:5554/almirante",{method:"POST"})
-                                }else{
-                                    //Update = PUT
-
-                                }
-                            })   
-                            d.addEventListener('click',(e)=>{
-                                if(e.target.matches('.edit')){
-                                    $form.name.value = e.target.dataset.name;
-                                    $form.fruta.value = e.target.dataset.fruta;
-                                    $form.haki.value = e.target.dataset.haki;
-                                    $form.id.value = e.target.dataset.id;
-                                }
-                                if(e.target.matches('.delete')){
-                                    let res = confirm(`Estas Seguro que queires Eliminar a: ${e.target.dataset.name}`)
-                                    if(res){
-                                    let delePeticion = fetch("http://localhost:5554/almirante/"+e.target.dataset.id,{method:"DELETE"})
-                                    console.log(delePeticion)
-                                    // if(!delePeticion.ok){
-                                    //     throw{status: delePeticion.status, statusText: delePeticion.statusText};
-                                    // }
-                                    }   
-                                };
-                            });
                     }catch(err){
-                       console.warn(`Error ${err.status}- ${err.statusText || 'Detectado'}`)
-                    }
+                        $table.insertAdjacentHTML("afterend",`<p>Error ${err.status}- ${err.statusText || 'Detectado'}</p>`);
+                    };
                 };
                 fetchPeticcíon();
         });
-        
+        $form.addEventListener('submit',async (e)=>{
+            if(e.target === $form){
+                e.preventDefault()
+                try{
+                     function error(peticion){if(!peticion.ok)throw{status: peticion.status, statusText: peticion.statusText}};
+                     if(!e.target.id.value){
+                        // Crear =  POST 
+                        let options = {
+                            method: "POST",
+                            headers:{
+                                "Content-type":"application/json;charset=utf-8"
+                            },
+                            body: JSON.stringify({
+                                name:$form.name.value,
+                                fruta:$form.fruta.value,
+                                Haki:$form.haki.value
+                            })
+                        };
+                        let peticion =  await fetch("http://localhost:5554/almirantes",options);
+                        error(peticion);
+                    }else{
+                        //Update = PUT
+                        let options = {
+                            method: "PUT",
+                            headers:{
+                                "Content-type":"application/json;charset=utf-8"
+                            },
+                            body: JSON.stringify({
+                                name:$form.name.value,
+                                fruta:$form.fruta.value,
+                                Haki:$form.haki.value
+                            })
+                        };
+                        let crearPeticion =  await fetch("http://localhost:5554/almirantes/"+ e.target.id.value,options);
+                        error(crearPeticion);
+                    };
+                }catch(err){ $table.insertAdjacentHTML("afterend",`<p>Error ${err.status}- ${err.statusText || 'Detectado'}</p>`)};
+            };
+        });
+        d.addEventListener('click',async (e)=>{
+            try{
+                if(e.target.matches('.edit')){
+                    $form.name.value = e.target.dataset.name;
+                    $form.fruta.value = e.target.dataset.fruta;
+                    $form.haki.value = e.target.dataset.haki;
+                    $form.id.value = e.target.dataset.id;
+                }
+                if(e.target.matches('.delete')){
+                    // DELETAR = DELETE
+                    let res = confirm(`Estas Seguro que queires Eliminar a: ${e.target.dataset.name}`)
+                    if(res){
+                    let delePeticion = await fetch("http://localhost:5554/almirantes/"+e.target.dataset.id,{method:"DELETE"})
+                    if(!delePeticion.ok){throw{status: delePeticion.status, statusText: delePeticion.statusText}};
+                    }   
+                };
+            }catch(err){$table.insertAdjacentHTML("afterend",`<p>Error ${err.status}- ${err.statusText || 'Detectado'}</p>`)}
+        });
       
             
     </script>
