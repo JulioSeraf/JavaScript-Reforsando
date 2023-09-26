@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Web con AJAX</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100%;
+            width: 100%;
+        }
+        header{
+            height: 10vh;
+            width: 100%;
+            background-color: aquamarine;
+        }
+        header nav{
+            width: 50%;
+            float: right;
+            text-align: right;
+            padding: 10px;
+            margin-right: 30px;
+        }
+        header nav a {
+            text-decoration: none;
+            font-weight: bolder;
+            color:  black;
+            margin:0 10px;
+            font-size: 1.3em;
+        }
+        main{
+            height: 90vh;
+            text-align: center;   
+        }
+        div img{
+            margin: 10px auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" id="home">Home</a>
+            <a href="#" id="acerca">Acerca</a>
+            <a href="#" id="servicio">Servicios</a>
+            <a href="#" id="contacto">Contacto</a>
+        </nav> 
+    </header>
+    <main>
+        <div class="temple-info">
+            <h1 class="title"></h1>
+            <p class="p-info"></p>
+            <img src="#" alt="#" class="img-info">
+        </div>
+    </template>
+    </main>
+    <!-- <template class="temple-info">
+        <h1 class="title"></h1>
+        <p class="p-info"></p>
+        <img src="img/ajaxWeb/contact-us.jpg" alt="#" class="img-info">
+    </template> -->
+    <script>
+        const d = document,
+        $main = d.querySelector('main'),
+        xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("readystatechange",()=>{
+            if(xhr.status !== 4) return;
+
+            if(xhr.status >= 200 && xhr.status < 300){
+                let res = xhr.responseText;
+                sucess(res)
+            }else{
+                error()
+            }
+        })
+    </script>
+</body>
+</html>
