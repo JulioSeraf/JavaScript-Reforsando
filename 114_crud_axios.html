@@ -13,7 +13,9 @@
             <form class="crud-form">
                 <input type="text" name="name" placeholder= "Nombre:" required>
                 <br>
-                <input type="text" name="fruta" placeholder="Fruta" required>
+                <input type="text" name="fruta" placeholder="Fruta:" required>
+                <br>
+                <input type="text" name="haki" placeholder="haki:" required>
                 <br>
                 <input type="submit" value="Enviar">
                 <input type="hidden" name="id">
@@ -82,17 +84,36 @@
         d.addEventListener("submit", async(e)=>{
             if(e.target === $form){
                 e.preventDefault();
-            }
+                const dataFunction =()=>{
+                    return {
+                        name: $form.name.value,
+                        fruta: $form.fruta.value,
+                        Haki: $form.haki.value
+                    };
+                }
+                if(!e.target.id.value){
+                    //Crear = POST
+                     await axios.post("http://localhost:5554/yonks",dataFunction());
+                }else{
+                    //update = PUT
+                    await axios.put("http://localhost:5554/yonks/"+ e.target.id.value,dataFunction())
+                }
+            };
         });
         d.addEventListener("click", async(e)=>{
             if(e.target.matches(".edit")){
-
+                $title.textContent = "EDITAR YONKO"
+                $form.name.value = e.target.dataset.name;
+                $form.fruta.value = e.target.dataset.fruta;
+                $form.haki.value = e.target.dataset.haki;
+                $form.id.value = e.target.dataset.id;
             }
             if(e.target.matches(".delete")){
+                // DELETAR = DELETE
                 console.log(e.target.id)
                 try{
                     let res = confirm(`Estas seguro que queries eliminar: ${e.target.dataset.name}`);
-                    if(res){ await axios.delete("http://localhost:5554/yonk/"+e.target.dataset.id)};
+                    if(res){ await axios.delete("http://localhost:5554/yonks/"+e.target.dataset.id)};
                 }catch(err){
                    alert(`Error: ${err.request.status} - ${err.request.statusText || "Detectado"}`);
                 };

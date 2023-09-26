@@ -1,7 +1,7 @@
 {
   "yonks": [
     {
-      "name": "KAID",
+      "name": "KAIDO",
       "fruta": "zoon mitica-peixe Dragon",
       "Haki": "all",
       "id": 1
@@ -39,8 +39,14 @@
     {
       "name": "Buggy",
       "fruta": "Paramecia",
-      "Haki": "no-have",
+      "Haki": "amr",
       "id": 7
+    },
+    {
+      "name": "Roger ",
+      "fruta": "no-have",
+      "Haki": "all",
+      "id": 8
     }
   ],
   "almirantes": [
