@@ -60,7 +60,6 @@
             try{
                 let axio = await axios.get("http://localhost:5554/yonks"),
                 json = await axio.data;
-                console.log(axio)
                 json.forEach(el => {
                     $template.querySelector(".name").textContent = el.name;
                     $template.querySelector(".fruta").textContent = el.fruta;
@@ -76,7 +75,6 @@
                 });
                 $table.querySelector('tbody').appendChild($fragment);
             }catch(err){
-                console.log(err.request.status)
                 $form.insertAdjacentHTML("afterend",`<p> Error <strong>${err.request.status}</strong> - ${err.request.statusText || "Detectado"}`)
             }
         }
@@ -89,9 +87,9 @@
                         return {
                             name: $form.name.value,
                             fruta: $form.fruta.value,
-                            Haki: $form.haki.value
-                        };
-                    };
+                            Haki: $form.haki.value,
+                           
+                        }};
                     if(!e.target.id.value){
                         //Crear = POST
                         await axios.post("http://localhost:5554/yonks",dataFunction());
@@ -99,6 +97,7 @@
                         //update = PUT
                         await axios.put("http://localhost:5554/yonks/"+ e.target.id.value,dataFunction())
                     };
+                    location.reload();
                 };
         }catch(err){$form.insertAdjacentHTML("afterend",`<p>Error: ${err.request.status} - ${err.request.statusText || "Detectado"}</p>`)}
         });
@@ -112,7 +111,6 @@
             }
             if(e.target.matches(".delete")){
                 // DELETAR = DELETE
-                console.log(e.target.id)
                 try{
                     let res = confirm(`Estas seguro que queries eliminar: ${e.target.dataset.name}`);
                     if(res){ await axios.delete("http://localhost:5554/yonks/"+e.target.dataset.id)};
