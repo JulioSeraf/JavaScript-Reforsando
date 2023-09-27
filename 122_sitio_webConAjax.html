@@ -31,13 +31,13 @@
             font-weight: bolder;
             color:  black;
             margin:0 10px;
-            font-size: 1.3em;
+            font-size: 115%;
         }
         main{
             height: 90vh;
             text-align: center;   
         }
-        div img{
+        img{
             margin: 10px auto;
             width: 50%;
         }
@@ -45,20 +45,14 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="#" id="home">Home</a>
-            <a href="#" id="acerca">Acerca</a>
-            <a href="#" id="servicio">Servicios</a>
-            <a href="#" id="contacto">Contacto</a>
+        <nav class="main">
+            <a href="assets/home.html" id="home">Home</a>
+            <a href="assets/acerca.html" id="acerca">Acerca</a>
+            <a href="assets/servicios.html" id="servicio">Servicios</a>
+            <a href="assets/contacto.html" id="contacto">Contacto</a>
         </nav> 
     </header>
     <main>
-        <div class="temple-info">
-            <h1 class="title"></h1>
-            <p class="p-info"></p>
-            <img src="#" alt="#" class="img-info">
-        </div>
-    </template>
     </main>
     <!-- <template class="temple-info">
         <h1 class="title"></h1>
@@ -67,19 +61,42 @@
     </template> -->
     <script>
         const d = document,
-        $main = d.querySelector('main'),
-        xhr = new XMLHttpRequest();
-
-        xhr.addEventListener("readystatechange",()=>{
-            if(xhr.status !== 4) return;
-
-            if(xhr.status >= 200 && xhr.status < 300){
-                let res = xhr.responseText;
-                sucess(res)
-            }else{
-                error()
+        $main = d.querySelector('main');
+        const getHTML= (options)=>{
+            let {url, success, error} = options; 
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange",(e)=>{
+                if(xhr.readyState !== 4) return;
+                if(xhr.status >= 200 && xhr.status < 300){
+                    let res = xhr.responseText;
+                    success(res);
+                }else{
+                    let erroMsg = xhr.statusText || "Detectado";    
+                    error(`ERROR: ${xhr.status} - ${erroMsg}`);
+                };
+            });
+            xhr.open("GET",url);
+            xhr.setRequestHeader("Content-type","text/html;charset=utf-8");
+            xhr.send();
+        };
+        d.addEventListener("DOMContentLoaded",(e)=>{
+            getHTML({
+                url: "assets/home.html",
+                success: (res)=>$main.innerHTML = res,
+                error: (err)=> $main.innerHTML = `<h1>${err}</h1>`
+            });
+        });
+        d.addEventListener("click",(e)=>{
+            if(e.target.matches(".main a")){
+                e.preventDefault();
+                getHTML({
+                url: e.target.href,
+                success: (res)=>$main.innerHTML = res,
+                error: (err)=> $main.innerHTML = `<h1>${err}</h1>`
+                });
             }
         })
+
     </script>
 </body>
 </html>
