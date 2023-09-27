@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incluir con AJAX</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100%;
+            width: 100%;
+        }
+        header{
+            height: 10vh;
+            width: 100%;
+            background-color: aquamarine;
+        }
+        header nav{
+            width: 50%;
+            float: right;
+            text-align: right;
+            padding: 10px;
+            margin-right: 30px;
+        }
+        header nav a {
+            text-decoration: none;
+            font-weight: bolder;
+            color:  black;
+            margin:0 10px;
+            font-size: 115%;
+        }
+        main{
+            height: 90vh;
+            text-align: center;   
+        }
+        img{
+            margin: 10px auto;
+            width: 50%;
+        }
+    </style>
+    <script src="assets/includ-html.js"></script>
+</head>
+<body>
+    <div data-includ="assets/header.html"></div>
+    <main>
+    </main>
+    <div data-includ="assets/footer.html"></div>
+    <script>
+        const d = document,
+        $main = d.querySelector('main');
+        const getHTML= (options)=>{
+            let {url, success, error} = options; 
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange",(e)=>{
+                if(xhr.readyState !== 4) return;
+                if(xhr.status >= 200 && xhr.status < 300){
+                    let res = xhr.responseText;
+                    success(res);
+                }else{
+                    let erroMsg = xhr.statusText || "Detectado";    
+                    error(`ERROR: ${xhr.status} - ${erroMsg}`);
+                };
+            });
+            xhr.open("GET",url);
+            xhr.setRequestHeader("Content-type","text/html;charset=utf-8");
+            xhr.send();
+        };
+        d.addEventListener("DOMContentLoaded",(e)=>{
+            getHTML({
+                url: "assets/home.html",
+                success: (res)=>$main.innerHTML = res,
+                error: (err)=> $main.innerHTML = `<h1>${err}</h1>`
+            });
+        });
+        d.addEventListener("click",(e)=>{
+            if(e.target.matches(".main a")){
+                e.preventDefault();
+                getHTML({
+                url: e.target.href,
+                success: (res)=>$main.innerHTML = res,
+                error: (err)=> $main.innerHTML = `<h1>${err}</h1>`
+                });
+            }
+        })
+
+    </script>
+</body>
+</html>
