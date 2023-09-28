@@ -31,7 +31,40 @@
     </main>
     <script> 
         const d = document,
-            $main = d.querySelector('main');
+            $main = d.querySelector('main'),
+            $files = d.getElementById("files");
+
+            const uploader = (file)=>{
+                console.log(files);
+                const xhr = new XMLHttpRequest(),
+                    formData = new FormData();  
+
+                formData.append("file",file) ;                                    
+                xhr.addEventListener("readystatechange",()=>{
+                    if(xhr.readyState !== 4) return;
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        console.log(xhr.responseText);
+
+                    }else{
+                        let = errMsg = xhr.statusText || "detectado";
+                        alert(`Error ${xhr.status} - ${errMsg}`);
+                    }
+                });
+                xhr.open("POST","assets/124_uploader.php");
+                //Como estamos subiendo archivos bionario atras del formulario devemos usar la seguinte haeder(cabecera), pra que el envio funcione
+                xhr.setRequestHeader("enc-type","multipart/form-data");
+                xhr.send(formData);
+            };
+
+            d.addEventListener("change",(e)=>{
+                if(e.target === $files){
+                    console.log(e.target);
+                    // el method Array.from() trasforma un elementro no interable apto para usa los metodo que elemetos interables (como foreach()- map()-filter(), etc....)
+                    const files = Array.from(e.target.files);
+                    files.forEach(el => uploader(el));
+                };
+
+            });
     </script>
 </body>
 </html>
