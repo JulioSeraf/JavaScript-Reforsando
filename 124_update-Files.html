@@ -35,16 +35,15 @@
             $files = d.getElementById("files");
 
             const uploader = (file)=>{
-                console.log(files);
                 const xhr = new XMLHttpRequest(),
+                //Este Objeto simula los envio de los datos como un formulario
                     formData = new FormData();  
-
-                formData.append("file",file) ;                                    
+                // para add los datos que seran enviados como un formulario usamos el metoso append el la variavel formData y passamos los datos, que recibe como primero valor el nombre que sera asgnado a los datos como variavel y como segundo valor los datos en si
+                formData.append("file",file);                                    
                 xhr.addEventListener("readystatechange",()=>{
                     if(xhr.readyState !== 4) return;
                     if(xhr.status >= 200 && xhr.status < 300){
-                        console.log(xhr.responseText);
-
+                        console.log(xhr.responseText)
                     }else{
                         let = errMsg = xhr.statusText || "detectado";
                         alert(`Error ${xhr.status} - ${errMsg}`);
@@ -58,7 +57,7 @@
 
             d.addEventListener("change",(e)=>{
                 if(e.target === $files){
-                    console.log(e.target);
+
                     // el method Array.from() trasforma un elementro no interable apto para usa los metodo que elemetos interables (como foreach()- map()-filter(), etc....)
                     const files = Array.from(e.target.files);
                     files.forEach(el => uploader(el));
