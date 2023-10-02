@@ -26,10 +26,27 @@
         progress{
             margin-top: 10px;
         }
+        .dropSquad{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            min-height: 300px;
+            border: 2px dashed gray;
+            border-radius:20px;
+        }
+        .dropSquad p{
+            color:  gray;
+        }
+       
     </style>
 </head>
 <body>
     <main>
+        <div class="dropSquad">
+            <p>Adicione el Arquivo...</p>
+
+        </div>
         <input type="file" name="files" id="files" multiple>
     </main>
     <script> 
