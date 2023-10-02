@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>uploader Drag and Drop</title>
     <style>
         html{
             box-sizing: border-box;
@@ -26,7 +26,7 @@
         progress{
             margin-top: 10px;
         }
-        .dropSquad{
+        .dropZone{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,24 +35,38 @@
             border: 2px dashed gray;
             border-radius:20px;
         }
-        .dropSquad p{
+        .dropZone p{
             color:  gray;
+        }
+        .dropZone.is-active{
+            border:thick dashed #000;
+            background-color: lightgreen;
+            animation:pulse 1.5s infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes pulse{
+            0%,100%{
+                transform: scale(1);
+            }
+
+            50%{
+                transform: scale(1.1);
+            }
         }
        
     </style>
 </head>
 <body>
     <main>
-        <div class="dropSquad">
+        <div class="dropZone">
             <p>Adicione el Arquivo...</p>
 
         </div>
-        <input type="file" name="files" id="files" multiple>
     </main>
     <script> 
         const d = document,
             $main = d.querySelector('main'),
-            $files = d.getElementById("files");
+            $dropZona = d.querySelector(".dropZone");
 
             const uploader = (file)=>{
                 const xhr = new XMLHttpRequest(),
@@ -63,8 +77,7 @@
                 xhr.addEventListener("readystatechange",()=>{
                     if(xhr.readyState !== 4) return;
                     if(xhr.status >= 200 && xhr.status < 300){
-                        let json = JSON.parse(xhr.responseText)
-                        console.log(json)
+                        let json = JSON.parse(xhr.responseText);
                     }else{
                         let = errMsg = xhr.statusText || "detectado";
                         alert(`Error ${xhr.status} - ${errMsg}`);
@@ -91,28 +104,36 @@
                 fileReade.addEventListener("progress", e =>{ // Este evento se ativa a tener un progresso de carga de arquivo
                     let progrees = parseInt((e.loaded*100)/e.total);
                     $progress.value = progrees;
-                    $span.innerHTML = `<strong>${file.name}-${progrees}%</strong>`
+                    $span.innerHTML = `<strong>${file.name}-${progrees}%</strong>`;
                 }); 
                 fileReade.addEventListener("loadend", e =>{
                     // este evento se ativara al finalizar una cargar de arquivo
-                    uploader(file)
+                    uploader(file);
                     setTimeout(()=>{
                         $main.removeChild($progress);
-                        $main.removeChild($span);
-                        $files.value = '';
-                    },2000)
+                        $main.removeChild($span);   
+                    },2000);
                 }); 
             }
-
-            d.addEventListener("change",(e)=>{
-                if(e.target === $files){
-
-                    // el method Array.from() trasforma un elementro no interable apto para usa los metodo de elemetos interables (como foreach()- map()-filter(), etc....)
-                    const files = Array.from(e.target.files);
-                    files.forEach(el => progressUploand(el));
-                };
-
-            });
+            $dropZona.addEventListener("dragover",e =>{
+                // console.log(e)
+                e.preventDefault();
+                e.stopPropagation();
+                $dropZona.classList.add("is-active")
+            })
+            $dropZona.addEventListener("dragleave",e =>{
+                e.preventDefault();
+                e.stopPropagation();
+                $dropZona.classList.remove('is-active');
+            })
+            $dropZona.addEventListener("drop", e =>{
+                e.preventDefault();
+                e.stopPropagation();
+                const files = Array.from(e.dataTransfer.files);
+                files.forEach(el => progressUploand(el));
+                $dropZona.classList.remove('is-active');
+              
+            })
     </script>
 </body>
 </html>
