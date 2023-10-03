@@ -88,11 +88,11 @@
         <form id="formulario">
             <legend>Envianos tu Comentarios</legend>
             <label for="name">Nombre:</label>
-            <input type="text" name="iname"  title="El Nombre solo acepta letras y espacions en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+            <input type="text" name="name"  title="El Nombre solo acepta letras y espacions en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
             <label for="email">Email:</label>
-            <input type="email" name="iemail"  title="use un email vaildo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            <input type="email" name="email"  title="use un email vaildo" required>
             <label for="about">Assunto a tratar:</label>
-            <input type="text" name="iabout" title="El Assuto es requerido" required>
+            <input type="text" name="about" title="El Assuto es requerido" required>
             <textarea name="iareText" id="areaText" cols="50" rows="10" title="Tu Comentarios no deve exeder los 255 caracteres" placeholder="texto..." required data-pattern="^.{1,255}$" ></textarea>
             <input name="ienviar" id="enviar" value="Enviar" type="submit">
             <div class="contact-form-load none">
@@ -120,7 +120,7 @@
             if(e.target.matches(form +' [required]')){
                 const $input = e.target,
                     pattern = $input.pattern||$input.dataset.pattern;
-                    console.log(pattern)
+                    // console.log(pattern)
                 if(pattern  && $input.value !== '' ){
                     let expReg = new RegExp(pattern);
                     !expReg.test($input.value)
@@ -140,16 +140,17 @@
             const $load = d.querySelector('.contact-form-load'),
                 $resposte = d.querySelector('.contact-form-respo');
                 $load.classList.remove("none");
+                // hacemos el codigo de la peticion de formualrio en el evento submit
             fetch("https://formsubmit.co/ajax/juliodev26@gmail.com",({
                 method:"POST",
                 body: new FormData(e.target) // el FormData parsea todos los elementos q tenga el formulario(e.targrt), importante lembrar que para funcionar el parseo todos los elementos del formulario tiene que tener el atributo (name="")
             })).then((res => res.ok?res.json():Promise.reject(res)))
             .then(json =>{
                 $resposte.classList.remove("none");
-                $resposte.querySelector("p").textContent = json.message
+                $resposte.querySelector("p").textContent = json.message;
                 $load.classList.add("none");
-                setTimeout(()=>{$resposte.classList.add("none");},2000)
-                console.log(json)
+                // console.log(json)
+                $form.reset()
 
             })
             .catch(err => {
@@ -157,6 +158,10 @@
                 $resposte.classList.remove('none');
                 let errMsg = err.statusText || "Detectado";
                 $resposte.querySelector('p').textContent = `Error: ${err.status} - ${errMsg}`})
+            .finally(
+                // usamos para limpiar el message de error o sucesso del la viewport
+                setTimeout(()=>{$resposte.classList.add("none");},2000)
+            )
         //     setTimeout(()=>{
         //         $load.classList.add('none');
         //         $resposte.classList.remove('none');
