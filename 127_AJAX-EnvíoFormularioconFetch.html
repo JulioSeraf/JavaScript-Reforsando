@@ -103,7 +103,73 @@
             </div>
         </form>
     </section>
-    <script type="module" src="127-AJAX-validacionConFectch.js">  
+    <script>
+    const d = document;
+    function validacioForm(form){
+        const $form = d.querySelector(form),
+        $input = d.querySelectorAll(form +' [required]');
+        $input.forEach(input => {
+            const $span = d.createElement('span');
+            $span.id = input.name;
+            $span.textContent = input.title;
+            $span.classList.add('contact-form-error', 'none');
+            input.insertAdjacentElement("afterend", $span);
+        });
+        d.addEventListener('keyup',(e)=>{
+            const expRegEmail = new RegExp(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/);
+            if(e.target.matches(form +' [required]')){
+                const $input = e.target,
+                    pattern = $input.pattern||$input.dataset.pattern;
+                    console.log(pattern)
+                if(pattern  && $input.value !== '' ){
+                    let expReg = new RegExp(pattern);
+                    !expReg.test($input.value)
+                    ? d.getElementById($input.name).classList.add('is-active')
+                    :d.getElementById($input.name).classList.remove('is-active')
+                }
+                if(!pattern){
+                    $input.value === ''
+                    ? d.getElementById($input.name).classList.add('is-active')
+                    :d.getElementById($input.name).classList.remove('is-active')
+                };
+            };
+        });
+
+        d.addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const $load = d.querySelector('.contact-form-load'),
+                $resposte = d.querySelector('.contact-form-respo');
+                $load.classList.remove("none");
+            fetch("https://formsubmit.co/ajax/juliodev26@gmail.com",({
+                method:"POST",
+                body: new FormData(e.target) // el FormData parsea todos los elementos q tenga el formulario(e.targrt), importante lembrar que para funcionar el parseo todos los elementos del formulario tiene que tener el atributo (name="")
+            })).then((res => res.ok?res.json():Promise.reject(res)))
+            .then(json =>{
+                $resposte.classList.remove("none");
+                $resposte.querySelector("p").textContent = json.message
+                $load.classList.add("none");
+                setTimeout(()=>{$resposte.classList.add("none");},2000)
+                console.log(json)
+
+            })
+            .catch(err => {
+                console.log(err)
+                $resposte.classList.remove('none');
+                let errMsg = err.statusText || "Detectado";
+                $resposte.querySelector('p').textContent = `Error: ${err.status} - ${errMsg}`})
+        //     setTimeout(()=>{
+        //         $load.classList.add('none');
+        //         $resposte.classList.remove('none');
+        //         $form.reset()
+        //         setTimeout(()=>{
+        //             $resposte.classList.add('none');
+        //         },3000)
+        //     },3000)
+        })
+    };
+d.addEventListener("DOMContentLoaded",()=>{
+        validacioForm("#formulario")
+    })
     </script>
 </body>
 </html>
