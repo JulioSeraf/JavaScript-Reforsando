@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Fetch</title>
+    <style>
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+        }
+        body{
+            min-height: 100vh;
+            text-align: center;
+        }
+        section form{
+            --form-ok-color: green;
+            --form-error-color:red;
+            width: 80%;
+            margin: auto;
+        }
+        section form >*{
+            padding:5px 0;
+            margin: 5px auto;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: left;
+        }
+        textarea{
+            resize: none;
+        }
+        form legend,.contact-form-respo{
+            text-align: center;
+            font-weight: bolder;
+            font-size: 1.3em;
+        }
+        .contact-form-load{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form > input[type="submit"]{
+            cursor: pointer;
+            text-align: center !important;
+            width: 50% !important;
+            margin:auto;
+        }
+
+        form [required]:valid{
+            border: 1px solid var(--form-ok-color);
+        }
+        form [required]:invalid{
+            border: 1px solid  var(--form-error-color);
+        }
+        .contact-form-error{
+            margin-top:-5px !important;
+            font-size: 80%;
+            background-color: var(--form-error-color);
+            color: white;
+            text-align: center !important;
+            transition: all 800ms ease;
+        }
+        .is-active{
+            display: block !important;
+            animation: show-massage 1s 1 normal 0s ease-out both;
+        }
+        .none{
+        display: none;
+        }
+
+        @keyframes show-massage {
+            0%{
+                visibility: hidden;
+                opacity: 0;
+            }
+            100%{
+                visibility:visible;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>Envio de Formulario (Validación)</h1>
+        <form id="formulario">
+            <legend>Envianos tu Comentarios</legend>
+            <label for="name">Nombre:</label>
+            <input type="text" name="iname"  title="El Nombre solo acepta letras y espacions en blanco" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$" required>
+            <label for="email">Email:</label>
+            <input type="email" name="iemail"  title="use un email vaildo" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+            <label for="about">Assunto a tratar:</label>
+            <input type="text" name="iabout" title="El Assuto es requerido" required>
+            <textarea name="iareText" id="areaText" cols="50" rows="10" title="Tu Comentarios no deve exeder los 255 caracteres" placeholder="texto..." required data-pattern="^.{1,255}$" ></textarea>
+            <input name="ienviar" id="enviar" value="Enviar" type="submit">
+            <div class="contact-form-load none">
+                <img src="img/circles.svg" alt="load">
+            </div>
+            <div class="contact-form-respo none">
+                <p>Los datos han sidos enviados</p>
+            </div>
+        </form>
+    </section>
+    <script type="module" src="127-AJAX-validacionConFectch.js">  
+    </script>
+</body>
+</html>
