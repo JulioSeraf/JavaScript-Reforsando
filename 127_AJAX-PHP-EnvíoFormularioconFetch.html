@@ -141,9 +141,10 @@
                 $resposte = d.querySelector('.contact-form-respo');
                 $load.classList.remove("none");
                 // hacemos el codigo de la peticion de formualrio en el evento submit
-            fetch("assets/127_EnvioConPhp.php",({
+            fetch("assets/127_envioConPhp.php",({
                 method:"POST",
-                body: new FormData(e.target) // el FormData parsea todos los elementos q tenga el formulario(e.targrt), importante lembrar que para funcionar el parseo todos los elementos del formulario tiene que tener el atributo (name="")
+                body: new FormData(e.target), // el FormData parsea todos los elementos q tenga el formulario(e.targrt), importante lembrar que para funcionar el parseo todos los elementos del formulario tiene que tener el atributo (name="")
+                mode: "cors" // para activar el recurso cors, lembrando que hay que actica el back tbn por via de hearder
             })).then((res => res.ok?res.json():Promise.reject(res)))
             .then(json =>{
                 $resposte.classList.remove("none");
@@ -154,7 +155,6 @@
 
             })
             .catch(err => {
-                console.log(err)
                 $resposte.classList.remove('none');
                 let errMsg = err.statusText || "Detectado";
                 $resposte.querySelector('p').textContent = `Error: ${err.status} - ${errMsg}`})
@@ -172,7 +172,7 @@
         //     },3000)
         })
     };
-d.addEventListener("DOMContentLoaded",()=>{
+    d.addEventListener("DOMContentLoaded",()=>{
         validacioForm("#formulario")
     })
     </script>
