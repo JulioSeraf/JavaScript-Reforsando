@@ -4,17 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagos Online con Fetch y Stripe</title>
+    <style>
+        html{
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: 16px;
+            text-align: center;
+        }
+        *,*::before,*::after{
+            box-sizing: inherit;
+        }
+        .milkshakes{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: fit-content;
+            background-color: lightcyan;
+            padding: 10px;
+            border-radius: 10px 0 10px 0;
+            text-align: center;
+            font-size: 125%;
+            transition: all0.3s ease-out;
+            /* color: ; */
+        }
+        .milkshakes img{
+            width: 100%;
+            height: auto;
+        }
+        .milkshakes>*{
+            flex:1 1 250px;
+        }
+    </style>
 </head>
 <body>
     <h1>Checkout con Strike</h1>
-    <section id="milkshake" class="milkshake"></section>
+    <section id="milkshake" class="milkshakes"></section>
     <template id="milk-template">
-        <figure id="shake">
+        <figure class="shake">
             <img>
             <figcaption></figcaption>
         </figure>
     </template>
     <script src="https://js.stripe.com/v3/"></script>
-    <script src="assets/stripe-checkout.js" type="module"></script>
+    <script src="assets/stripe-checkout.js"></script>
 </body>
 </html>

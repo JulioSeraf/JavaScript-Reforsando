@@ -31,7 +31,7 @@ const datosPersonal = {
     "nulo": null
 }
 */
-console.log(JSON)
+// console.log(JSON)
 //JavaScript contiene dos metodos para converter JSON: parse() stringify()
 
 //parse() transforma la cadena de texto json en un valor que sea valido en JavaScript
