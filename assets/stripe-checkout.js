@@ -4,11 +4,11 @@ const d = document,
     $sectionMain = d.querySelector('.milkshakes'),
     fetchOptions = {
         headers:{//usamos la option header con la propriesas authorization: bearer (mais la llave secreta de stripe) para acesseder a los productos, sin essa autorizacion nos lanza un error 401(no autorizado)
-            authorization:"Bearer (llave secreta aqui)"
-        }
+            authorization:"Bearer (llave secreta aqui)"}
     };
     let prices,
         productos;
+    const formMoney = num => `${num.slice(0,1) + ',' + num.slice(1,3)}`
     const insertProductoYPrice = (prices,productos) => {
         // console.log(productos,prices)
         prices.forEach(price => {
@@ -17,7 +17,7 @@ const d = document,
             $template.querySelector('.shake').setAttribute('data-price',price.id);
             $template.querySelector('img').src = productoData[0].images[0];
             $template.querySelector('img').alt = productoData[0].name;
-            $template.querySelector('figcaption').textContent = `${productoData[0].name}: ${price.unit_amount_decimal.slice(0,1) + ',' + price.unit_amount_decimal.slice(1,3)} ${price.currency}.`
+            $template.querySelector('figcaption').textContent = `${productoData[0].name}: ${formMoney(price.unit_amount_decimal)} ${price.currency}.`
             let $clone = d.importNode($template,true);
             $fragmento.appendChild($clone);
         });
@@ -28,7 +28,7 @@ const d = document,
     Promise.all([
         fetch("https://api.stripe.com/v1/products",fetchOptions),
         fetch("https://api.stripe.com/v1/prices",fetchOptions)])
-        .then((response )=> Promise.all(response.map(res => res.json())))
+        .then((response )=> Promise.all(response.map(res => res.ok?res.json():Promise.reject(res))))
         .then(json => {
             productos = json[0].data;
             prices = json[1].data;
@@ -36,6 +36,6 @@ const d = document,
         })
         .catch(err =>{ 
             let errMsg = err.statusText || "Ocurrió un error al conectarse con la API de Stripe";
-            // $shake.innerHTML = `<p>Error: ${err.status} - ${errMsg}</p>`;
+            $sectionMain.innerHTML = `<p>Error: ${err.status} - ${errMsg}</p>`;
             });
                                             
