@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Showns de Tv</title>
+    <style>
+        .grid-fluid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+        }
+
+        .loader{
+            display:block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador Showns de Tv</h1>
+    <input type="search" id="buscador" placeholder="Buscar shows de tv...">
+    <section id="shows-query" class="grid-fluid"></section>
+    <template id="show-template">
+        <article class="show-template">
+            <h3></h3>
+            <div></div>
+            <img>
+            <a></a>
+        </article>
+    </template>
+    <script>
+        const d = document,
+            $template = d.getElementById('show-template').content,
+            $shows = d.getElementById('shows-query'),
+            $fragment = d.createDocumentFragment();
+
+        d.addEventListener("keypress",async (e)=>{
+            if(e.target.matches("#buscador") && e.keyCode === 13){
+                // console.log(e.key)
+            }
+        })
+    </script>
+</body>
+</html>
