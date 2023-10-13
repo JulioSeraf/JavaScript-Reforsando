@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador Showns de Tv</title>
     <style>
+        body{
+            text-align: center;
+        }
         .grid-fluid{
             display: grid;
             grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            gap: 20px;
         }
-
         .loader{
             display:block;
             margin: auto;
@@ -32,11 +35,38 @@
         const d = document,
             $template = d.getElementById('show-template').content,
             $shows = d.getElementById('shows-query'),
-            $fragment = d.createDocumentFragment();
+            $fragment = d.createDocumentFragment(),
+            $UserSearch = d.getElementById('buscador');
+            
 
         d.addEventListener("keypress",async (e)=>{
             if(e.target.matches("#buscador") && e.keyCode === 13){
                 // console.log(e.key)
+                try{
+                    $shows.innerHTML = "<img class='loader' src='img/circles.svg' alt='loader imagen'>";
+                    let resPeticion = await fetch(`https://api.tvmaze.com/search/shows?q=${$UserSearch.value}`);
+                    let shows = await resPeticion.json();
+                    // console.log(shows)
+                    console.log(shows)
+                    if(!resPeticion.ok) throw {
+                        status: resPeticion.status,
+                        statusText: resPeticion.statusText || "Detectado"
+                    };
+                    shows.forEach(shows => {
+                        let {name,url,summary,image} = shows.show;
+                        $template.querySelector('h3').textContent = name;
+                        $template.querySelector('div').innerHTML = `<p>${summary}</p>`;
+                        $template.querySelector('img').src = image.medium;
+                        $template.querySelector('a').href = url;
+                        let $clone = d.importNode($template,true);
+                        $fragment.appendChild($clone);
+                    });
+                    $shows.innerHTML = "";
+                   $shows.appendChild($fragment)
+                    
+                }catch(err){
+                    $shows.innerHTML = `<h1>Error: ${err.status}- ${err.statusText}</h1>`
+                }
             }
         })
     </script>
