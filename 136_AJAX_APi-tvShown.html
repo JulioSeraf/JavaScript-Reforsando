@@ -28,15 +28,14 @@
             <h3></h3>
             <div></div>
             <img>
-            <a></a>
+            <a href="#"></a>
         </article>
     </template>
     <script>
         const d = document,
             $template = d.getElementById('show-template').content,
             $shows = d.getElementById('shows-query'),
-            $fragment = d.createDocumentFragment(),
-            $UserSearch = d.getElementById('buscador');
+            $fragment = d.createDocumentFragment();
             
 
         d.addEventListener("keypress",async (e)=>{
@@ -44,28 +43,41 @@
                 // console.log(e.key)
                 try{
                     $shows.innerHTML = "<img class='loader' src='img/circles.svg' alt='loader imagen'>";
-                    let resPeticion = await fetch(`https://api.tvmaze.com/search/shows?q=${$UserSearch.value}`);
+                    let query = e.target.value.toLowerCase(),
+                    api = `https://api.tvmaze.com/search/shows?q=${query}`;
+                    let resPeticion = await fetch(api);
                     let shows = await resPeticion.json();
                     // console.log(shows)
                     console.log(shows)
                     if(!resPeticion.ok) throw {
                         status: resPeticion.status,
-                        statusText: resPeticion.statusText || "Detectado"
+                        statusText: resPeticion.statusText
                     };
-                    shows.forEach(shows => {
-                        let {name,url,summary,image} = shows.show;
-                        $template.querySelector('h3').textContent = name;
-                        $template.querySelector('div').innerHTML = `<p>${summary}</p>`;
-                        $template.querySelector('img').src = image.medium;
-                        $template.querySelector('a').href = url;
-                        let $clone = d.importNode($template,true);
-                        $fragment.appendChild($clone);
-                    });
-                    $shows.innerHTML = "";
-                   $shows.appendChild($fragment)
+                    if(shows.length === 0){
+                       $shows.innerHTML = `<h2>No existe resultado de Shows para el criterio de busqueda <strong>"${query}"</strong></h2>`;
+                    }else{
+                        shows.forEach(shows => {
+                            let {name,url,summary,image} = shows.show;
+                            console.log(url)
+                            $template.querySelector('h3').textContent = name;
+                            $template.querySelector('div').innerHTML = summary? summary: `<p>Sin descrición.</p>`;
+                            $template.querySelector('img').src = image.medium? image.medium: "img/no.png";
+                            $template.querySelector('img').alt = name;
+                            $template.querySelector('img').style.maxWidth = "100%"
+                            $template.querySelector('a').href = url? url: '#';
+                            $template.querySelector('a').target =  url? "_blank":'_self';
+                            $template.querySelector('a').textContent = url? `ver mas...`: '';
+                            let $clone = d.importNode($template,true);
+                            $fragment.appendChild($clone);
+                            $shows.innerHTML = '';
+                        })
+                        $shows.appendChild($fragment);
+                    };
+                   
                     
                 }catch(err){
-                    $shows.innerHTML = `<h1>Error: ${err.status}- ${err.statusText}</h1>`
+                    let errMsg = err.statusText || "Ocurrió un error";
+                    $shows.innerHTML = `<h1>Error: ${err.status}- ${errMsg}</h1>`
                 }
             }
         })
