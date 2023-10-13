@@ -60,13 +60,13 @@
                             let {name,url,summary,image} = shows.show;
                             console.log(url)
                             $template.querySelector('h3').textContent = name;
-                            $template.querySelector('div').innerHTML = summary? summary: `<p>Sin descrición.</p>`;
-                            $template.querySelector('img').src = image.medium? image.medium: "img/no.png";
+                            $template.querySelector('div').innerHTML = summary? summary: `Sin descrición`;
+                            $template.querySelector('img').src = image.medium? image.medium: "https://static.tvmaze.com/images/no-img/no-img-portrait-text.png";
                             $template.querySelector('img').alt = name;
                             $template.querySelector('img').style.maxWidth = "100%"
                             $template.querySelector('a').href = url? url: '#';
-                            $template.querySelector('a').target =  url? "_blank":'_self';
-                            $template.querySelector('a').textContent = url? `ver mas...`: '';
+                            $template.querySelector('a').target =  url?"_blank":'_self';
+                            $template.querySelector('a').textContent = url? `ver más...`: '';
                             let $clone = d.importNode($template,true);
                             $fragment.appendChild($clone);
                             $shows.innerHTML = '';
