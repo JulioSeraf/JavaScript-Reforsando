@@ -72,19 +72,22 @@
             try{
                 $loader.style.display = `block`;
 
-                let artista = e.target.artista.value.toLowerCase(),
-                    song = e.target.song.value.toLowerCase(),
-                    $artistaTemplate = '',
-                    $songTemplate = '',
-                    artistApi = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artista}`,
-                    songApi =`https://private-anon-b952098f71-lyricsovh.apiary-mock.com/v1/${artista}/${song}`,
-                    artistFetch = fetch(artistApi),
-                    songFetch = fetch(songApi),
-                    [artistaRes, songRes] = await Promise.all(artistFetch,songFetch),
-                    artistaData = await artistaRes.json(),
-                    songData = await songRes.json();
+                // let artista = e.target.artista.value.toLowerCase(),
+                    // song = e.target.song.value.toLowerCase(),
+                    // $artistaTemplate = '',
+                    // $songTemplate = '',
+                    // artistApi = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=coldplay`,
+                    // songApi =`https://api.lyrics.ovh/v1/coldplay/yellow`,
+                    // artistFetch = fetch(artistApi),
+                    // songFetch = fetch(songApi),
+                    // [artistaRes, songRes] = await Promise.all([artistFetch,songFetch]),
+                    // artistaData = await artistaRes.json(),
+                    // songData = await songRes.json();
+                    // console.log(artistaData,songData)
 
-                    console.log(artistaData,songData,`ok`)
+                    // @######################33 estas api ja no funcionan ######################################
+
+                   
 
             }catch(err){
                 let errMsg = err.statusText || 'Ocurrió un error';

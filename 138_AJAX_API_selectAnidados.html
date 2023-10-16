@@ -1,0 +1,50 @@
+<!-- ########################################### esta api ya no funciona ############################################## -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Anidados</title>
+</head>
+<body>
+    <h1>Selects Anidados</h1>
+    <h2>México</h2>
+    <label for="primario">Estados</label>
+    <select name="primario" id="primario">
+        <option value="" selected>Elige un Estado</option>
+    </select>
+    <label for="segundario">Municipios</label>
+    <select name="segundario" id="segundario">
+        <option value="">Elige un Municipio</option>
+    </select>
+    <p></p>
+    
+    <template id="options">
+        <option value="#"></option>
+    </template>
+</body>
+<script>
+    const d = document,
+    $selectPrimary = d.getElementById('primario');
+    $selectSecondary = d.getElementById('segundario');
+
+    function loadStates(){
+        fetch('https://api.copomex.com/quer/get_estados?token=pruebas').then(res => res.ok?res.json():Promise.reject(res))
+        .then(json => console.log(json))
+        .catch(err => {
+            let errMsg = err.statusText || 'Ocurrió un error';
+            $selectPrimary.nextElementSibling.innerHTML = `Error ${err.status}: ${errMsg}`;
+        })
+
+    };
+
+    function loadTowns(state){
+
+    }
+    d.addEventListener('DOMContentLoaded',(e)=>loadStates);
+    $selectPrimary.addEventListener('change', e => loadTowns(e.target.value));
+    
+
+</script>
+</html> -->
