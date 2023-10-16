@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de canciones</title>
+    <style>
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-family: sans-serif;
+        }
+        img{
+            max-width: 100%;
+            height: auto;
+
+        }
+        body{
+            text-align: center;
+        }
+        main{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .loader{
+            display: none;
+            margin: auto;
+        }
+
+        @media screen and (min-width:800px) {
+            main{
+                flex-direction: row;
+            }
+            main > *{
+                flex-basis: 50%;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Buscador de Canciones</h1>
+    <form id="song-search">
+    <input name="artista" type="text" placeholder="Cantor:">
+    <input name="cancion" type="text" placeholder="Canción:">
+    <input type="submit" id="enviar" value="Enviar">
+    </form>
+    <img class="loader" src="img/circles.svg" alt="Cargando...">
+    <aside class="error"></aside>
+    <main>
+        <article class="artista">
+        </article>
+        <article class="song">
+        </article>
+    </main>
+    <script>
+        const d = document,
+        $form = d.getElementById('song-search'),
+        $loader = d.querySelector('.loader'),
+        $error = d.querySelector('.error'),
+        $main = d.querySelector('main'),
+        $artista = d.querySelector('.artista'),
+        $song = d.querySelector('.song');
+
+        $form.addEventListener('submit', async(e)=>{
+            e.preventDefault();
+            try{
+                $loader.style.display = `block`;
+
+                let artista = e.target.artista.value.toLowerCase(),
+                    song = e.target.song.value.toLowerCase(),
+                    $artistaTemplate = '',
+                    $songTemplate = '',
+                    artistApi = `https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artista}`,
+                    songApi =`https://private-anon-b952098f71-lyricsovh.apiary-mock.com/v1/${artista}/${song}`,
+                    artistFetch = fetch(artistApi),
+                    songFetch = fetch(songApi),
+                    [artistaRes, songRes] = await Promise.all(artistFetch,songFetch),
+                    artistaData = await artistaRes.json(),
+                    songData = await songRes.json();
+
+                    console.log(artistaData,songData,`ok`)
+
+            }catch(err){
+                let errMsg = err.statusText || 'Ocurrió un error';
+                $error.innerHTML = `<p>Error ${err.status}: ${errMsg}</p>`
+                $loader.style.display = `none`;
+            };
+        });
+        
+        // d.addEventListener('click',async(e)=>{
+        //    if(e.target.matches('#enviar')){
+        //     Promise.all([
+        //         fetch(`theaudiodb.com/api/v1/json/2/artist.php?i=${form.artista}`),
+        //         fetch(`https://api.lyrics.ovh/v1/${form.artista}/${form.cancion}`)
+        // ]).then(res => Promise.all(res => res.map(respose => respose.ok?res.json():Promise.reject(res))))
+        //     .then(res => console.log(res)).catch(err => console.log(err))
+
+        //    };
+
+        // })
+    </script>
+</body>
+</html>
