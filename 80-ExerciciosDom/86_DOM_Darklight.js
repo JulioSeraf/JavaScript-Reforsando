@@ -20,7 +20,7 @@ const darkLigth = (btn)=>{
                 }else{
                     lS.setItem('thema','dark');
                    temaDark();
-                }
+                };
             };
         });
         // localstorage para thema dark/light
@@ -28,7 +28,7 @@ const darkLigth = (btn)=>{
             if(lS.getItem('thema') === null) lS.setItem('thema','light');
             if(lS.getItem('thema')==='light') temaDark();
             if(lS.getItem('thema') === 'dark') temaDark();
-        })
+        });
 };
 
 export default darkLigth;
