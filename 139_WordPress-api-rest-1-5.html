@@ -7,14 +7,79 @@
 </head>
 <body>
     <h1>WordPress REST API</h1>
+    <article id="site" class="site"></article>
+    <section id="posts" class="posts"></section>
+    <img class="loader" src="img/circles.svg" alt="Cargando...">
+    <template id="post-template">
+        <article class="posts">
+            <img class="post-image">
+            <aside>
+                <h2 class="post-title"></h2>
+                <figure class="post-author">
+                </figure>
+                <small class="post-date"></small>
+                <a class="post-link" target="_blank"> Ver publicación Original</a>
+                <p class="post-excerpt"></p>
+                <div class="post-categories"></div>
+                <div class="post-tags"></div>
+                <details class="post-content">
+                    <summary>Ver contenido de la Publicación</summary>
+                    <article></article>
+                </details>
+            </aside>
+        </article>
+        <hr>
+    </template>
     <script>
-        // Podemos acceder a cualquier sitio que este hecho en  WordPress mediante json, para hacerlo solo tenemos que haceder a su url com el endpoit /wp-json, para que nos devolvar las informaciones, para hacer a un infomacion especifica usamos el endpoit que nos indicar wordpress que seria /wp/v2/informarcion 
-        fetch("https://malvestida.com/wp-json/wp/v2/posts").then(res => res.ok? res.json(): Promise.reject(res))
-        .then(json => console.log(json))
-        .catch(err =>{
-            let errMsg = err.statusText || "Error al consultar datos";
-            document.body.querySelector("h1").insertAdjacentHTML("afterend", `Error ${err.status}: ${errMsg}`)
-        })
+        const d = document,
+        $site = d.getElementById("site"),
+        $posts = d.getElementById("posts"),
+        $loader = d.querySelector(".loader"),
+        $template = d.getElementById("post-template").content,
+        $fragment = d.createDocumentFragment(),
+        DOMAIN = "https://malvestida.com",
+        SITE = `${DOMAIN}/wp-json`,
+        APIWP = `${SITE}/wp/v2`,
+        POSTS = `${APIWP}/posts`,
+        PAGES = `${APIWP}/pages`,
+        CATEGORIES = `${APIWP}/categories`;
+
+        // Podemos acceder a cualquier sitio que este hecho en  WordPress mediante json, para hacerlo solo tenemos que haceder a su url com el endpoit /wp-json, para que nos devolvar las informaciones, para hacer a un infomacion especifica usamos el endpoit que nos indicar wordpress que seria /wp/v2/informarcion
+        
+        function getSiteData(){
+            fetch(SITE)
+            .then(res=> res.ok?res.json():Promise.reject(res))
+            .then(json => {
+                $site.innerHTML = `
+                <h3>Sitio Web</h3>
+                <h2>
+                    <a href="${json.home}" target="_blank">${json.name}</a>
+                </h2>
+                <p>${json.description}</p>
+                <p>${json.timezone_string}</p>
+                `;
+            })
+            .catch(err => {
+                let errMsg = err.statusText || "Error al acessar Api";
+                $site.innerHTML = `<p>ERROR ${err.status}:${errMsg}</p>`;
+            }); 
+        };
+
+        function getPosts(){
+            fetch(POSTS)
+            .then(res=> res.ok?res.json():Promise.reject(res))
+            .then(json => console.log(json))
+            .catch(err => {
+                let errMsg = err.statusText || "Error al acessar Api";
+                $posts.innerHTML = `<p>Error ${err.status}:${errMsg} </p>`;
+                $loader.style.display = "none";
+            });
+        };
+
+        d.addEventListener("DOMContentLoaded",(e)=>{
+            getSiteData();
+            getPosts();
+        });
     </script>
 </body>
 </html>
