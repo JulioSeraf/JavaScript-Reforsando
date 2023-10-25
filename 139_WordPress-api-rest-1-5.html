@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress API-Fetch</title>
+</head>
+<body>
+    <h1>WordPress REST API</h1>
+    <script>
+        // Podemos acceder a cualquier sitio que este hecho en  WordPress mediante json, para hacerlo solo tenemos que haceder a su url com el endpoit /wp-json, para que nos devolvar las informaciones, para hacer a un infomacion especifica usamos el endpoit que nos indicar wordpress que seria /wp/v2/informarcion 
+        fetch("https://malvestida.com/wp-json/wp/v2/posts").then(res => res.ok? res.json(): Promise.reject(res))
+        .then(json => console.log(json))
+        .catch(err =>{
+            let errMsg = err.statusText || "Error al consultar datos";
+            document.body.querySelector("h1").insertAdjacentHTML("afterend", `Error ${err.status}: ${errMsg}`)
+        })
+    </script>
+</body>
+</html>
