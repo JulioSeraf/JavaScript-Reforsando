@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WordPress API-Fetch</title>
+    <style>
+        .loader{
+            display: none;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
     <h1>WordPress REST API</h1>
@@ -40,7 +46,7 @@
         DOMAIN = "https://malvestida.com",
         SITE = `${DOMAIN}/wp-json`,
         APIWP = `${SITE}/wp/v2`,
-        POSTS = `${APIWP}/posts`,
+        POSTS = `${APIWP}/posts?_embed`,
         PAGES = `${APIWP}/pages`,
         CATEGORIES = `${APIWP}/categories`;
 
@@ -66,9 +72,27 @@
         };
 
         function getPosts(){
+            $loader.style.display = "block";
             fetch(POSTS)
             .then(res=> res.ok?res.json():Promise.reject(res))
-            .then(json => console.log(json))
+            .then(json =>{
+                console.log(json)
+                  json.forEach(el => {
+                    $template.querySelector(".post-title").textContent = el.title.rendered;
+                    $template.querySelector(".post-author").innerHTML = el.author;
+                    $template.querySelector(".post-date").innerHTML = el.date;
+                    $template.querySelector(".post-link").href = el.link;
+                    $template.querySelector(".post-excerpt").innerHTML = el.excerpt.rendered;
+                    $template.querySelector(".post-categories").innerHTML = el.categories;
+                    $template.querySelector(".post-tags").innerHTML = el.tags;
+                    $template.querySelector(".post-content").innerHTML = el.content
+
+                    let $clone = d.importNode($template, true);
+                    $fragment.appendChild($clone);
+                  });
+                  $posts.appendChild($fragment);
+                  $loader.style.display = "none";
+            })
             .catch(err => {
                 let errMsg = err.statusText || "Error al acessar Api";
                 $posts.innerHTML = `<p>Error ${err.status}:${errMsg} </p>`;
