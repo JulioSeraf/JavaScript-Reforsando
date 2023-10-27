@@ -78,6 +78,8 @@
             .then(json =>{
                 console.log(json)
                   json.forEach(el => {
+                    $template.querySelector(".post-image").src = el._embedded["wp:featuredmedia"][0].source_url;
+                    $template.querySelector(".post-image").alt = el.title.rendered;
                     $template.querySelector(".post-title").textContent = el.title.rendered;
                     $template.querySelector(".post-author").innerHTML = el.author;
                     $template.querySelector(".post-date").innerHTML = el.date;
