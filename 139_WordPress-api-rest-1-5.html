@@ -76,7 +76,8 @@
         }
         .loader{
             display: none;
-            margin: auto;
+            width: 50px;
+            margin: 1rem auto;
         }
     </style>
 </head>
@@ -111,16 +112,16 @@
         $posts = d.getElementById("posts"),
         $loader = d.querySelector(".loader"),
         $template = d.getElementById("post-template").content,
-        $fragment = d.createDocumentFragment(),
-        DOMAIN = "https://malvestida.com",
+        $fragment = d.createDocumentFragment();
+        let DOMAIN = "https://malvestida.com",
         SITE = `${DOMAIN}/wp-json`,
         APIWP = `${SITE}/wp/v2`,
         POSTS = `${APIWP}/posts?_embed`,
         PAGES = `${APIWP}/pages`,
         CATEGORIES = `${APIWP}/categories`;
-
+        let contPage = 1;
         // Podemos acceder a cualquier sitio que este hecho en  WordPress mediante json, para hacerlo solo tenemos que haceder a su url com el endpoit /wp-json, para que nos devolvar las informaciones, para hacer a un infomacion especifica usamos el endpoit que nos indicar wordpress que seria /wp/v2/informarcion
-        
+      
         function getSiteData(){
             fetch(SITE)
             .then(res=> res.ok?res.json():Promise.reject(res))
@@ -140,9 +141,9 @@
             }); 
         };
 
-        function getPosts(){
+        function getPosts(petPage){
             $loader.style.display = "block";
-            fetch(POSTS)
+            fetch(petPage)
             .then(res=> res.ok?res.json():Promise.reject(res))
             .then(json =>{
                 console.log(json)
@@ -154,7 +155,7 @@
 
                     el._embedded["wp:term"][1].forEach(el => tags += `<li>${el.name}</li>`);
 
-                    $template.querySelector(".post-image").src = el._embedded["wp:featuredmedia"][0].source_url;
+                    $template.querySelector(".post-image").src = el._embedded["wp:featuredmedia"]?el._embedded["wp:featuredmedia"][0].source_url:""; 
                     $template.querySelector(".post-image").alt = el.title.rendered;
                     $template.querySelector(".post-title").textContent = el.title.rendered;
                     $template.querySelector(".post-author").innerHTML = `<img src="" alt="">
@@ -187,7 +188,16 @@
 
         d.addEventListener("DOMContentLoaded",(e)=>{
             getSiteData();
-            getPosts();
+            getPosts(POSTS);
+        });
+        d.addEventListener("scroll",(e)=>{
+         const {scrollTop, clientHeight, scrollHeight} = d.documentElement;
+         if(scrollTop + clientHeight + 10 >= scrollHeight){
+            POSTS += `&per_page=10&page=${++contPage}`
+            getPosts(POSTS);   
+        }
+         POSTS+= `&per_page=${contPage}`
+        //  console.log(scrollTop, clientHeight, scrollHeight)
         });
     </script>
 </body>
