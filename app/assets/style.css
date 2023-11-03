@@ -34,6 +34,27 @@ img{
     color: #fff;
     background-color: #dc3545;
 }
+.form-search{
+    margin: auto;
+    text-align: center;
+}
+.form-search input{
+    display: block;
+    margin: auto;
+    padding: 0.25rem;
+    border-radius: 0.25m;
+    font-size:1rem;
+}
+.header > *{
+    margin: 1rem auto;
+}
+.header{
+    padding:0.5rem;
+    position: sticky;
+    top:0;
+    text-align: center;
+    background-color: #fff;
+}
 .loader{
     display: block;
     margin: auto;
