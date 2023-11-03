@@ -1,4 +1,5 @@
 export function ajax(props){
+    
     let {url,cbSuccess} = props;
 
     fetch(url)
