@@ -1,7 +1,8 @@
 import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
-export function Router(){
+// Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
+export async function Router(){
     const d = document,
         w = window,
         $main = d.getElementById("main");
@@ -13,14 +14,14 @@ export function Router(){
 
     // usamos el hash para podermos canbiar de vista el la SPA
     if(!hash ||hash === "#/"){
-        ajax({
+        await ajax({
             url:api.POSTS,
             cbSuccess:(posts)=>{
                 console.log(posts)
                 let html = "";
                 posts.forEach(post => html += PostCard(post));
                 d.querySelector(".loader").style.display = 'none';
-                $posts.innerHTML = html;
+                $main.innerHTML = html;
             }
         });
     }else if(hash.includes("#/search")){
@@ -30,5 +31,5 @@ export function Router(){
     }else{
         $main.innerHTML = "<h2>aqui cargara el contenido el post previamente selecionado </h2>"
     };
-
+    d.querySelector(".loader").style.display = 'none';
 };
