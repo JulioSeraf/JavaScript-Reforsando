@@ -1,7 +1,9 @@
 import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
+import { Post } from "./Post.js";
 // Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
+
 export async function Router(){
     const d = document,
         w = window,
@@ -20,7 +22,7 @@ export async function Router(){
                 console.log(posts)
                 let html = "";
                 posts.forEach(post => html += PostCard(post));
-                d.querySelector(".loader").style.display = 'none';
+                // d.querySelector(".loader").style.display = 'none';
                 $main.innerHTML = html;
             }
         });
@@ -29,7 +31,17 @@ export async function Router(){
     }else if(hash === "#/contacto"){
         $main.innerHTML = "<h2>Section de Contacto</h2>"
     }else{
-        $main.innerHTML = "<h2>aqui cargara el contenido el post previamente selecionado </h2>"
+        let wpPostId = localStorage.getItem("wpPostId");
+        // $main.innerHTML = "<h2>aqui cargara el contenido el post previamente selecionado </h2>"
+        ajax({
+            url:api.POST +'/'+ wpPostId,
+            cbSuccess:(post)=>{
+                console.log(post)
+                let html = '';
+                $main.innerHTML = html += Post(post);
+            }
+        });
+      
     };
     d.querySelector(".loader").style.display = 'none';
 };
