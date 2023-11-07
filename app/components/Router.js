@@ -31,14 +31,12 @@ export async function Router(){
     }else if(hash === "#/contacto"){
         $main.innerHTML = "<h2>Section de Contacto</h2>"
     }else{
-        let wpPostId = localStorage.getItem("wpPostId");
         // $main.innerHTML = "<h2>aqui cargara el contenido el post previamente selecionado </h2>"
-        ajax({
-            url:api.POST +'/'+ wpPostId,
+        await ajax({
+            url:api.POST +'/'+localStorage.getItem("wpPostId")+"?_embed",
             cbSuccess:(post)=>{
                 console.log(post)
-                let html = '';
-                $main.innerHTML = html += Post(post);
+                $main.innerHTML = Post(post);
             }
         });
       
