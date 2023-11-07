@@ -2,6 +2,7 @@ import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
 import { Post } from "./Post.js";
+import { SearchForm } from "./SearchForm.js";
 // Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
 
 export async function Router(){
@@ -27,7 +28,18 @@ export async function Router(){
             }
         });
     }else if(hash.includes("#/search")){
-        $main.innerHTML = "<h2>Section de Search</h2>"
+        let querry = localStorage.getItem("wpSearch");
+
+        if(!querry)return false;
+    
+        await ajax({
+            url:api.SEARCH + querry,
+            cbSuccess:(search)=>{
+                console.log(search)
+                let html = "";
+                search.forEach(post => html += PostCard(post));
+            }
+        })
     }else if(hash === "#/contacto"){
         $main.innerHTML = "<h2>Section de Contacto</h2>"
     }else{
