@@ -2,9 +2,7 @@ import api from "../helpers/wp_api.js";
 import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
 import { Post } from "./Post.js";
-import { SearchForm } from "./SearchForm.js";
 import { SearchCard } from "./SearchCard.js";
-import { InfinteScroll } from "../helpers/InfiniteScroll.js";
 // Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
 
 export async function Router(){
@@ -64,5 +62,4 @@ export async function Router(){
       
     };
     d.querySelector(".loader").style.display = 'none';
-    InfinteScroll();
 };
