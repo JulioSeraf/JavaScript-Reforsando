@@ -14,6 +14,10 @@ export function SearchForm(){
         if(location.hash.includes("#/search")){
             $input.value = localStorage.getItem("wpSearch");
         };
+        d.addEventListener("search", e=>{
+            if(!e.target === $input) return false;
+            if(!e.target.value) localStorage.removeItem("wpSearch");
+        });
 
         d.addEventListener("submit",(e)=>{
             if(!e.target.matches(".search-form")) return false;

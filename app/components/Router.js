@@ -3,6 +3,8 @@ import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
 import { Post } from "./Post.js";
 import { SearchForm } from "./SearchForm.js";
+import { SearchCard } from "./SearchCard.js";
+import { InfinteScroll } from "../helpers/InfiniteScroll.js";
 // Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
 
 export async function Router(){
@@ -30,16 +32,24 @@ export async function Router(){
     }else if(hash.includes("#/search")){
         let querry = localStorage.getItem("wpSearch");
 
-        if(!querry)return false;
+        if(!querry){
+            d.querySelector(".loader").style.display = "none";
+            return false
+        };
     
         await ajax({
             url:api.SEARCH + querry,
             cbSuccess:(search)=>{
-                console.log(search)
+                console.log(search.length)
                 let html = "";
-                search.forEach(post => html += PostCard(post));
+                if(search.length === 0 ){
+                    html = `<p class="error">No encontramos resultado con la palabra <mark>${querry}</mark></p>`
+                }else{
+                    search.forEach(post => html += SearchCard(post));
+                };
+                $main.innerHTML = html;
             }
-        })
+        });
     }else if(hash === "#/contacto"){
         $main.innerHTML = "<h2>Section de Contacto</h2>"
     }else{
@@ -54,4 +64,5 @@ export async function Router(){
       
     };
     d.querySelector(".loader").style.display = 'none';
+    InfinteScroll();
 };
