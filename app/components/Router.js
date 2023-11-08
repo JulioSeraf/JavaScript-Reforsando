@@ -3,6 +3,7 @@ import { ajax } from "../helpers/ajax.js";
 import { PostCard } from "./PostCard.js";
 import { Post } from "./Post.js";
 import { SearchCard } from "./SearchCard.js";
+import { ContactForm } from "./ContactForm.js";
 // Transformamos nuetra fuction Runter y la peticion ajax en asincrona para espera la peticion y la respuesta de la peticion  para despues aplicar la el diplay none al loader
 
 export async function Router(){
@@ -49,7 +50,7 @@ export async function Router(){
             }
         });
     }else if(hash === "#/contacto"){
-        $main.innerHTML = "<h2>Section de Contacto</h2>"
+        $main.appendChild(ContactForm());
     }else{
         // $main.innerHTML = "<h2>aqui cargara el contenido el post previamente selecionado </h2>"
         await ajax({
