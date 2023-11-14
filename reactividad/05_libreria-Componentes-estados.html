@@ -3,69 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Componentes con estado</title>
+    <title>Liberia de Componentes con Estado</title>
 </head>
 <body>
-    <h1>Componentes con estado</h1>
+    <h1>Liberia de Componentes con Estado</h1>
     <form id="todo-form">
         <input type="text" id="todo-item" placeholder="Tarea por hacer">
         <input type="submit" value="Agregar">
     </form>
     <h2>Lista de Tareas</h2>
     <ul id="todo-list"></ul>
+    <script src="Componentes.js"></script>
     <script>
         const d = document;
-    
-        // Lo primero que hacemos es criar una variable baseada nel estado, lo que se conoce como state, que generalmente es un objeto, donde cada medoto de este objeto es cada atrbuto a controlar
+        const app = new Componentes({
+            el:"#todo-list",
+            data:{
+                todoList:[]
+            },
+            template:function(props){
 
-        // El State Global
-        const state ={
-            todoList:[]
-        } 
-        // Template UI
-        const template = ()=>{
-            if(template.data.todoList.length < 1){
+                if(props.todoList.length < 1){
                 return `<p><em>Lista sin tareas que hacer</em></p>`
-            }
-
-            let todos = template.data.todoList.map(item => `<li>${item}</li>`).join("");
-
-            return todos;
-        }
-        // Agregar State al Template que genera el Componente de UI (State Local)
-        template.data = {
-            todoList:[]
-        }
-
-        // Rederer UI
-        const render = ()=>{
-            console.log("Estado global", state)
-            console.log("Estado local",template.data);
-            const  $list = d.getElementById("todo-list");
-            if(!$list) return;
-            $list.innerHTML = template();
-        }
-
-        // Actualizar el state de forma Reactiva
-        const setState = obj =>{
-            for(let key in obj){
-                if(template.data.hasOwnProperty(key)){
-                    template.data[key] = obj[key];
                 }
-            };
-            render();
-        }
 
-        // Obtener una copia inmutable del Estado
-        // Al usar el JSON.stringify para convertir el objeto en cadena de texto y el JSON.parse para convertilo en objeto otra vez , hace que deje de ser el mismo objeto para covertise en uno nuevo
-        const getState = ()=> JSON.parse(JSON.stringify(template.data))
+                let todos = props.todoList.map(item => `<li>${item}</li>`).join("");
 
-        // d.addEventListener("DOMContentLoaded",rende mr);
+                return todos;
+            }});
 
-        // Estabelcer valores por defecto
-        setState({
-            todoList:["Tarea 1", "Tarea 2", "Tarea 3"]
-        });
+            d.addEventListener("DOMContentLoaded",app.render)
+            // Estabelecer valores por defecto al State
+            app.setState({
+                todoList:["Tarea 1","Tarea 2","Tarea 3"]
+            })
 
         d.addEventListener("submit", e =>{ 
             if(!e.target.matches("#todo-form")) return false;
@@ -75,9 +46,9 @@
             if(!$item) return;
 
             // Actuializar el State de forma reactiva
-            const lastState = getState();
+            const lastState = app.getState();
             lastState.todoList.push($item.value);
-            setState({
+            app.setState({
                 todoList: lastState.todoList
             });
 
