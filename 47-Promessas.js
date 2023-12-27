@@ -15,8 +15,9 @@ function cuadradoPromise(value){
 });
 };
 cuadradoPromise(2)
-.then( obj => {console.log(`El valor de ${obj.value} es ${obj.result}`);
- return cuadradoPromise(5);
+.then( obj => {
+    console.log(`El valor de ${obj.value} es ${obj.result}`);
+    return cuadradoPromise(5);
 })
 .then(obj =>{ console.log(`El valor de ${obj.value} es ${obj.result}`)
 return cuadradoPromise(4);
